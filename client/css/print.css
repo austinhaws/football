@@ -1,0 +1,26 @@
+@media print {
+	.print-hide {
+		display: none !important;
+	}
+	.print-show {
+		display: block !important;
+	}
+	.print-page-break {
+		page-break-after: always;
+		page-break-inside: avoid;
+		position: relative;
+	}
+
+	body, #content-wrapper {
+		background: white !important;
+	}
+
+	#navigation, #title, #footer {
+		display: none;
+	}
+
+	body {
+		width: 100%;
+		background-color: white;
+	}
+}

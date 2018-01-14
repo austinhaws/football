@@ -1,0 +1,20 @@
+{
+ "name": "fantasy-bracket-node-webservice",
+ "main": "server.js",
+ "dependencies": {
+  "body-parser": "~1.0.1",
+  "clone": "^2.1.1",
+  "cookie-parser": "^1.4.3",
+  "cors": "^2.8.4",
+  "express": "~4.0.0",
+  "express-session": "^1.15.6",
+  "guid": "0.0.12",
+  "helmet": "^3.9.0",
+  "mongodb": "^2.2.33",
+  "mysql": "^2.15.0"
+ },
+ "scripts": {
+  "run": "node server.js",
+  "watch": "nodemon server.js"
+ }
+}

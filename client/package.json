@@ -1,0 +1,39 @@
+{
+  "name": "fantasyBracketFrontEnd",
+  "version": "1.0.0",
+  "description": "The React front end to the fantasy bracket score entry/scorer system",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "clone": "^2.1.1",
+    "dts-js-logging": "^1.0.0",
+    "dts-react-common": "^1.0.20",
+    "jquery": "3.2.1",
+    "moment": "^2.19.1",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.2",
+    "react-dnd": "^2.5.4",
+    "react-dnd-html5-backend": "^2.5.4",
+    "react-dom": "^15.6.2",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "webpack": "^2.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "build": "webpack -p",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.dts.utah.gov:sixthfloor-east/internal/fantasyBracketReact.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
