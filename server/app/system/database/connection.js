@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/fantasy";
+const url = "mongodb://localhost:27017/football";
 
 const mongo = {db: false};
 
