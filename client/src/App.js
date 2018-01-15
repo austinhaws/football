@@ -17,8 +17,8 @@ class AppClass extends React.Component {
 	}
 
 	render() {
-		let leftTeam = shared.funcs.getTeam(this.props.teamLeft);
-		let rightTeam = shared.funcs.getTeam(this.props.teamLeft);
+		let leftTeam = shared.funcs.getTeam(this.props.selectedTeams.left);
+		let rightTeam = shared.funcs.getTeam(this.props.selectedTeams.right);
 
 		return (
 			<div id="app">
@@ -54,10 +54,8 @@ AppClass.propTypes = {
 	// === STORE === //
 	// the current logged in user, not required because it is undefined until it is ajax fetched
 	teams: PropTypes.array,
-	// which team is showing on left side
-	teamLeft: PropTypes.string,
-	// which team is showing on the right side
-	teamRight: PropTypes.string,
+	// which teams are selected
+	selectedTeams: PropTypes.object.isRequired,
 	// current ajax outstanding count
 	ajaxingCount: PropTypes.number.isRequired,
 };

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import store from '../Store';
 import svgs from '../SVGs';
+import {Link} from "react-router-dom";
 
 
 class PlayableTeam extends React.Component {
@@ -9,8 +10,8 @@ class PlayableTeam extends React.Component {
 		return (
 			<div className={`playable-team ${this.props.side}`}>
 				<div className="name-row">
-					<div>
-						<a className="arrow" href={`/team/${this.props.team.name}`}>{svgs.arrowLeft()}</a>
+					<div className="arrow">
+						{this.props.team.name ? <Link to={`team/${this.props.team.teamName}`}>{svgs.arrowLeft()}</Link> : false}
 					</div>
 					<div>
 						<select value={this.props.team ? this.props.team.name : ''} onChange={event => this.props.onTeamChanged(event.target.value)}>
