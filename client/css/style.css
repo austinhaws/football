@@ -42,11 +42,13 @@
 }
 
 .playable-team .offense-defense {
-	font-size: 17px;
+	font-size: 19px;
 	margin: 28px 0 8px;
+	font-weight: bold;
 }
 .playable-team .offense-defense button {
-	margin-top: -3px;
+	margin: -3px 8px 0;
+	font-weight: normal;
 }
 
 #teamsContainer {
