@@ -26,7 +26,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "webpack -d --watch",
+    "watch": "webpack -d --progress --watch",
     "build": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

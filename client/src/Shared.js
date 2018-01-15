@@ -50,31 +50,26 @@ const shared = {
 		 * @param doNotUseCsrf if true then the csrf is not sent in the call; not sure who wants this but go for it
 		 */
 		ajax: (method, url, data, callback, isRequestBody, isRefreshCsrf, doNotUseCsrf) => {
-			// wait for csrf to complete before actually performing the request
-			if (isRefreshCsrf || shared.vars.csrfComplete) {
-				shared.funcs.startAjax();
+			shared.funcs.startAjax();
 
-				$.ajax({
-					type: method,
-					contentType: "application/json; charset=utf-8",
-					dataType: "json",
-					url: shared.vars.urlBase + (doNotUseCsrf ? url : shared.funcs.csrfUrl(url)),
-					data: doNotUseCsrf ? data : (isRequestBody ? JSON.stringify(shared.funcs.csrf(data)) : shared.funcs.csrf(data)),
-					cache: false,
-					success: callback,
-					error: result => {
-						console.error('ajax error', result);
-						shared.funcs.ajaxFail();
-					},
-					complete: shared.funcs.stopAjax,
-					// set withCredentials to true for cross-domain requests
-					xhrFields: {
-						withCredentials: true
-					},
-				});
-			} else {
-				shared.vars.delayAjaxes.push([method, url, data, callback, isRequestBody]);
-			}
+			$.ajax({
+				type: method,
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				url: shared.vars.urlBase + (doNotUseCsrf ? url : shared.funcs.csrfUrl(url)),
+				data: doNotUseCsrf ? data : (isRequestBody ? JSON.stringify(shared.funcs.csrf(data)) : shared.funcs.csrf(data)),
+				cache: false,
+				success: callback,
+				error: result => {
+					console.error('ajax error', result);
+					shared.funcs.ajaxFail();
+				},
+				complete: shared.funcs.stopAjax,
+				// set withCredentials to true for cross-domain requests
+				xhrFields: {
+					withCredentials: true
+				},
+			});
 		},
 
 		// get csrf token for posting
@@ -91,59 +86,21 @@ const shared = {
 		},
 
 		// who is currently logged in?
-		getCurrentUser: () => shared.funcs.ajax('GET', 'person/current', {}, user => store.dispatch({type: reducers.ACTION_TYPES.SET_USER, payload: user})),
-
-		getCurrentTournament: callback => shared.funcs.ajax('GET', 'tournament/current', {}, tournament => {
-			store.dispatch({type: reducers.ACTION_TYPES.SET_TOURNAMENT, payload: tournament});
-			if (callback) {
-				callback(tournament);
-			}
-		}),
-
-		getMyPicks: () => shared.funcs.ajax('GET', 'person/picks', {}, myPicks => store.dispatch({type: reducers.ACTION_TYPES.SET_MY_PICKS, payload: myPicks})),
+		getTeams: () => shared.funcs.ajax('GET', 'team/all', {}, teams => store.dispatch({type: reducers.ACTION_TYPES.SET_TEAMS, payload: teams})),
 
 		// app has started, get some basic information
 		startup: () => {
-			// load csrf
-			shared.vars.csrfComplete = false;
-			shared.funcs.refreshCsrf(() => {
-				shared.vars.csrfComplete = true;
-				shared.vars.delayAjaxes.forEach(args => shared.funcs.ajax(...args));
-				shared.vars.delayAjaxes = [];
-
-				// get user information
-				shared.funcs.getCurrentUser();
-				shared.funcs.getCurrentTournament();
-				shared.funcs.getMyPicks();
-			});
+			shared.funcs.getTeams();
 		},
 
-		getTeam: teamId => Object.assign({teamId: teamId}, store.getState().tournament.teams[teamId]),
-		getRoundInfo: round => store.getState().tournament.dates.filter(d => d.round === round),
-
-		pickGameForward: (fromGame, toGame, callback) => {
-			shared.funcs.ajax(
-				'POST', 'person/pick', {
-					fromGame: {conference: fromGame.conference, round: fromGame.round, gameNumber: fromGame.gameNumber},
-					toGame: {conference: toGame.conference, round: toGame.round, gameNumber: toGame.gameNumber},
-				}, callback, true
-			)
-		},
-
-		getAllBrackets: () => shared.funcs.ajax('GET', 'bracket/all', {}, brackets => store.dispatch({type: reducers.ACTION_TYPES.SET_ALL_BRACKETS, payload: brackets})),
-
-		getPeople: () => shared.funcs.ajax('GET', 'person/all', {}, people => store.dispatch({type: reducers.ACTION_TYPES.SET_PEOPLE, payload: people})),
+		getTeam: teamName => {
+			const matches = store.getState().teams.filter(team => team.name === teamName);
+			return (matches && matches.length) ? matches[0] : false;
+		}
 	},
 	vars: {
-		// has csrf been fetched?
-		csrfComplete: false,
-		// ajaxes to call when csrf is gathered
-		delayAjaxes: [],
-		// moment information about tournament upcoming dates, since these are objects, they don't translate well to redux store state copying w/ json stringify/parse
-		upcomingDates: false,
-
 		// remote webservice - dev
-		urlBase: 'http://localhost:8080/api/',
+		urlBase: 'http://localhost:8080/football/',
 		// local static urls
 		// urlBase: 'http://localhost:8080/',
 	},

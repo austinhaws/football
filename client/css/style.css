@@ -1,549 +1,69 @@
 * {
-    margin: 0;
-    padding: 0;
-	font-family: "Roboto", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-}
-body {
-    background-color: #fff;
-    color: #000000;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-}
-
-.dataFont {
-	font-family: 'Roboto Mono', monospace;
-}
-
-#app {
-	display: flex;
-	flex-direction: column;
+	outline: none;
 }
 
 #title {
+	text-align: center;
 	font-weight: bold;
-	font-size: 50px;
+	font-size: 40px;
+	margin: 23px 0;
+}
+#credits {
 	text-align: center;
-	/* padding left to match navigation menu*/
-	padding: 20px 20px 20px 150px;
-}
-
-#appBody {
-	display: flex;
-	flex-direction: row;
-	padding: 0 20px;
-}
-
-#navigation {
-	display: flex;
-	flex-direction: column;
-	width: 200px;
-	border-right: 1px #aaa dotted;
-	margin-right: 30px;
-}
-
-#navigation a {
-	margin: 10px 0;
-	text-align: center;
-	text-decoration: none;
-	font-size: 17px;
-	color: black;
-	width: 175px;
-}
-#navigation a.current {
-	font-weight: bold;
-	font-size: 17px;
-}
-#navigation a:first-child {
-	margin: 0;
-}
-#navigation a:hover {
-	color: blue;
-}
-#footer {
-	text-align: center;
-	color: #666;
 	font-size: 8px;
-	margin-top: 20px;
-}
-#content {
-	width: 1750px;
+	margin-top: 23px;
 }
 
-#dateContainer {
+.playable-team.right .arrow svg {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	-ms-filter: "FlipH";
+}
+.playable-team {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
 }
-#dateContainer .dateRow {
+.playable-team.right .name-row {
+	flex-direction: row-reverse;
+}
+.playable-team .name-row {
 	display: flex;
 	flex-direction: row;
-	width: 500px;
+	line-height: 35px;
+}
+.playable-team .name-row select {
+	font-size: 25px;
+	margin: 0 8px;
+}
+.playable-team .arrow svg {
+	width: 25px;
+}
+
+.playable-team .offense-defense {
+	font-size: 17px;
+	margin: 28px 0 8px;
+}
+.playable-team .offense-defense button {
+	margin-top: -3px;
+}
+
+#teamsContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 777px;
 	margin: 0 auto;
 }
 
-#dateContainer .label {
-	font-weight: bold;
-	width: 200px;
-	margin-right: 5px;
-	text-align: right;
-}
-
-#dateContainer .oldDate {
-	color: #ccc;
-}
-#dateContainer .dateRow.currentDate {
-	font-size: 20px;
-	margin: 7px auto 7px auto;
-}
-
-#navigation a.account {
-	font-style: italic;
-	margin-bottom: 15px;
-	border-bottom: 1px dotted #aaa;
-	padding-bottom: 8px;
-	font-size: 15px;
-}
-
-.editorContainer {
-	display: flex;
-	flex-direction: column;
-}
-.editorContainer .inputs, .editorContainer .buttonContainer {
-	display: flex;
-	margin: 17px auto 0;
-	justify-content: space-around;
-	width: 400px;
-}
-.editorContainer .inputs {
-	flex-direction: column;
-}
-
-.editorContainer .inputGroup {
-	display: flex;
-	flex-direction: row;
-	margin: 8px 0;
-}
-.editorContainer .inputGroup:first-child {
-	margin-top: 0;
-}
-
-.editorContainer .inputGroup .label {
-	font-weight: bold;
-	margin-right: 9px;
-	width: 200px;
-	text-align: right;
-}
-
-.button {
-
-	box-sizing: border-box;
-	border-radius: 3px;
-	padding: 5px 15px;
-	text-decoration: none;
-	transition: all 400ms;
-	color: #222;
-	vertical-align: middle;
-	border: 1px solid rgba(255,255,255,0);
-	cursor: pointer;
-	/* check mark on workflow buttons on proposed job need this to be relative in order to position correctly */
-	position: relative;
-}
-.button:hover {
-	-webkit-filter: brightness(70%);
-	filter: brightness(70%)
-}
-.button:focus {
-	border: 1px solid rgba(0,0,0,0.2);
-}
-.button.disabled {
-	opacity: 0.25;
-}
-.button.disabled:hover {
-	-webkit-filter: none;
-	filter: none;
-	cursor: default;
-}
-.button.large {
-	display: block;
-	font-size: 24px;
-	line-height: 54px;
-	padding: 10px;
-	text-align: center;
-	/* need position:relative so that the arrow image (which is absolute positioned) will go to the right position) */
-	position: relative;
-}
-.button.medium {
-	display: block;
-	text-align: center;
-}
-
-.transparentglass {
-	background: rgba(255,255,255,0.5);
-}
-.grad-glass {
-	background: #cccccc;
-	background: linear-gradient(to bottom, #f1f1f1 0%,#cccccc 50%,#f6f6f6 100%) left top repeat-x;
-}
-.grad-ltgray {
-	background: #cccccc;
-	background: linear-gradient(to bottom, #f6f6f6 0%,#cccccc 100%) left top repeat-x;
-}
-.grad-blue {
-	background: #0071bc;
-	background: linear-gradient(to bottom, #29abe2 0%,#0071bc 100%);
-}
-.grad-darkbottomhighlight {
-	background: #333333;
-	background: linear-gradient(to bottom, #000000 0%,#000000 67%,#333333 100%);
-}
-.grad-darkgray {
-	background: rgb(32, 32, 32);
-	background : linear-gradient(0deg, rgb(32, 32, 32) 0%, rgb(85, 85, 85) 100%);
-}
-.grad-darkgrayblack {
-	background: rgba(51, 51, 51, 1);
-	background : linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(51, 51, 51, 1) 100%);
-}
-.grad-green {
-	background: #6e8c16;
-	background: linear-gradient(to bottom, #98c21f 0%,#6e8c16 100%);
-}
-.grad-yelloworange {
-	background: rgb(241, 111, 0);
-	background: linear-gradient(0deg, rgb(241, 111, 0) 0%, rgb(251, 188, 0) 100%);
-}
-.grad-red {
-	background: rgb(237, 28, 36);
-	background : linear-gradient(0deg, rgb(237, 28, 36) 0%, rgb(241, 90, 36) 100%);
-}
-
-.background-darker {
-	background: #232830;
-}
-.background-dark {
-	background: #303641;
-}
-.background-lighter {
-	background: #363C46;
-}
-
-.background-ltgray {
-	background: #fafafa;
-}
-.background-gray {
-	background: #f3f3f3;
-}
-.background-medgray {
-	background: #eaeaea;
-}
-.background-meddarkgray {
-	background: #aaa;
-}
-.background-darkgray {
-	background: #333;
-}
-.background-white {
-	background: #FFFFFF;
-}
-
-.color-slate-midtone {
-	color: #476073;
-}
-.background-slate-midtone {
-	background: #476073;
-}
-
-.color-red-midtone {
-	color: #DF6C4F;
-}
-.background-red-midtone {
-	background: #DF6C4F;
-}
-.accessibilityview .color-red-midtone {
-	color: #8e372c;
-}
-.accessibilityview .background-red-midtone {
-	background: #8e372c;
-}
-.color-red-lighttone {
-	color: #E1BFB7;
-}
-.background-red-lighttone {
-	background: #E1BFB7;
-}
-.color-yellow-midtone {
-	color: #EAA731;
-}
-.background-yellow-midtone {
-	background: #EAA731;
-}
-.color-yellow-lighttone {
-	color: #EAD89D;
-}
-.background-yellow-lighttone {
-	background: #EAD89D;
-}
-.color-green-midtone {
-	color: #6f933c;
-}
-.background-green-midtone {
-	background: #6f933c;
-}
-.accessibilityview .color-green-midtone {
-	color: #3E5A2D;
-}
-.accessibilityview .background-green-midtone {
-	background: #3E5A2D;
-}
-.color-green-lighttone {
-	color: #a4c475;
-}
-.background-green-lighttone {
-	background: #a4c475;
-}
-.color-green-xlighttone {
-	color: #d5e6b8;
-}
-.background-green-xlighttone {
-	background: #d5e6b8;
-}
-.color-aqua-midtone {
-	color: #3C948B;
-}
-.background-aqua-midtone {
-	background: #3C948B;
-}
-.accessibilityview .color-aqua-midtone {
-	color: #27554c;
-}
-.accessibilityview .background-aqua-midtone {
-	background: #27554c;
-}
-.color-aqua-lighttone {
-	color: #B0CBC9;
-}
-.background-aqua-lighttone {
-	background: #B0CBC9;
-}
-.color-blue-midtone {
-	color: #1A99AA;
-}
-.background-blue-midtone {
-	background: #1A99AA;
-}
-.accessibilityview .color-blue-midtone {
-	color: #174152;
-}
-.accessibilityview .background-blue-midtone {
-	background: #174152;
-}
-.color-blue-lighttone {
-	color: #A5CDD3;
-}
-.background-blue-lighttone {
-	background: #A5CDD3;
-}
-.background-blue-vlighttone {
-	background: #E6EEEF;
-}
-#ajaxingOverlay {
-	position: absolute;
-	top: 0;
-	background: rgba(255, 255, 255, .5) url("../img/spin.svg") no-repeat center center;
-	width: 100%;
-	left: 0;
-	height: 100%;
-}
-
-
-.bracketContainer {
-	display: flex;
-	justify-content: space-around;
-	flex-direction: row;
-}
-.roundsContainer {
-	display: flex;
-	justify-content: space-around;
-	flex-direction: row;
-}
-.roundContainer {
-	display: flex;
-	justify-content: space-around;
-	flex-direction: column;
-}
-.bracketContainerRight .roundsContainer {
-	flex-direction: row-reverse;
-}
-.roundTitles {
-	display: flex;
-	flex-direction: row;
-	border-left: 1px solid #fff;
-	justify-content: space-between;
-}
-.roundTitle:nth-child(7) {
-	width: 164px;
-}
-.roundTitle {
-	flex-direction: column;
-	align-items: center;
-}
-.roundTitle, .game {
-	padding: 4px;
-	width: 100px;
-	display: flex;
-	justify-content: space-around;
-}
-.roundTitle div:first-child {
-	font-weight: bold;
-}
-.roundTitle div:last-child {
-	font-style: italic;
-	font-size: 11px;
-}
-.game {
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	border-left: 1px solid #aaa;
-	border-bottom: 1px solid #aaa;
-	margin-bottom: 4px;
-	font-size: 10px;
-}
-.bracketContainerRight .game, .bracketContainerMiddle .game:last-child {
-	border-left: none;
-	border-right: 1px solid #aaa;
-	align-items: flex-end;
-}
-.bracketContainerMiddle .game:nth-child(2) {
-	border-left: none;
-	border-right: none;
-	margin-left: 24px;
-	margin-right: 24px;
-}
-.game:last-child, .bracketContainerMiddle .game {
-	margin-bottom: 0;
-}
-.game:first-child, .bracketContainerMiddle .game {
-	margin-top: 0;
-}
-.bracketContainerRight .game {
-	justify-content: flex-end;
-}
-.game .loser {
-	text-decoration: line-through;
-}
-.game {
-	user-select: none;
-}
-.dragTeamsContainer div:nth-child(2) {
-	margin-top: 7px;
-}
-.dragTeamsContainer .correct {
-	color: green;
-}
-.dragTeamsContainer .incorrect {
-	text-decoration: line-through;
-	color: red;
-}
-.bracketContainerMiddle .conferenceContainer, .bracketContainerMiddle .roundsContainer {
-	height: 100%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
-.conferenceTitle {
-	position: relative;
-	left: -10px;
-	font-weight: bold;
-	font-size: 14px;
-	margin-bottom: 5px;
-	margin-top: 5px;
-}
-.conferenceContainer:first-child .conferenceTitle {
-	margin-top:0;
-}
-.bracketContainerRight .conferenceTitle {
-	text-align: right;
-	left: 10px;
-}
-.conferenceTitle {
-	margin-top: 20px;
-}
-.bracketContainerMiddle .roundsContainer {
-	align-content: center;
-}
-.bracketContainerMiddle .game {
-	display: flex;
-	align-items: center;
-}
-
-.game.droppable {
-	border: 1px solid red;
-}
-.game.dragged {
-	border: 1px solid blue;
-}
-.editorContainer .title {
-	font-weight: bold;
-	font-size: 27px;
-	text-align: center;
-	margin-bottom: 12px;
-	padding-top: 14px;
-	border-top: 1px dotted #aaa;
-}
-.editorContainer .inputs:first-child .title {
-	border-top: none;
-}
-
-.inputColumns {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-.inputColumn {
-	border-left: 1px dotted #aaa;
-	margin: 7px 0;
-}
-.inputColumn:first-child {
-	border-left: none;
-	margin-right: 20px;
-}
-
-.inputColumn .teamName {
-	font-weight: bold;
-	text-align: center;
-	font-size: 18px;
-	margin-bottom: 17px;
-}
-.inputGroup.buttons {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	margin-top: 23px;
-}
-.button.disabled {
-	background-color: #eee;
-	cursor: default;
-}
-.dragTeamsContainer.dragOver {
-	background-color: yellow;
-}
-.picksRemaining {
-	text-align: center;
-	color: green;
-}
-.missingPicks {
-	color: #ca0000;
-	font-size: 20px;
-}
-.not-picked {
-	background-color: #fff8f9;
-}
-.bracketTopContainer .playerName {
-	position: absolute;
-	top: 66px;
-	text-align: center;
-	width: 100%;
-	font-size: 30px;
+button {
+	font-size: 12px;
+	background-color: #acdf9a;
+	border-radius: 5px;
+	line-height: 18px;
+	padding: 5px 9px;
+}
+button:hover {
+	background-color: #8eb87f;
 }
