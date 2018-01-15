@@ -142,5 +142,5 @@ target/**
 target**
 node_modules**
 
-node_modules**
 .idea**
+bundles**
