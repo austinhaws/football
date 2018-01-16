@@ -11,7 +11,7 @@ class PlayableTeam extends React.Component {
 			<div className={`playable-team ${this.props.side}`}>
 				<div className="name-row">
 					<div className="arrow">
-						{this.props.team.name ? <Link to={`team/${this.props.team.teamName}`}>{svgs.arrowLeft()}</Link> : false}
+						{this.props.team.name ? <Link to={`team/${this.props.team.name}`}>{svgs.arrowLeft()}</Link> : false}
 					</div>
 					<div>
 						<select value={this.props.team ? this.props.team.name : ''} onChange={event => this.props.onTeamChanged(event.target.value)}>

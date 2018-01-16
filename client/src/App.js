@@ -3,11 +3,12 @@ import {BrowserRouter} from 'react-router-dom'
 import * as ReactDOM from "react-dom";
 import {connect, Provider} from "react-redux";
 import PropTypes from "prop-types";
-import {withRouter} from "react-router";
+import {Route, Switch, withRouter} from "react-router";
 import store from './Store';
 import shared from './Shared';
-import PlayableTeam from "./PlayableTeam/PlayableTeam";
 import reducers from "./Reducers";
+import PlayGame from "./PlayGame/PlayGame";
+import TeamEdit from "./TeamEdit/TeamEdit";
 
 
 class AppClass extends React.Component {
@@ -17,29 +18,15 @@ class AppClass extends React.Component {
 	}
 
 	render() {
-		let leftTeam = shared.funcs.getTeam(this.props.selectedTeams.left);
-		let rightTeam = shared.funcs.getTeam(this.props.selectedTeams.right);
-
 		return (
 			<div id="app">
 				<div id="title">Football Tracker</div>
 
-				<div id="teamsContainer">
-					<div className="teamContainer">
-						<PlayableTeam
-							side="left"
-							team={leftTeam ? leftTeam : {}}
-							onTeamChanged={teamName => this.props.setSelectedTeam('left', teamName)}/>
-					</div>
-					<div className="outputContainer">
-						show output here
-					</div>
-					<div className="teamContainer">
-						<PlayableTeam
-							team={rightTeam ? rightTeam : {}}
-							side="right"
-							onTeamChanged={teamName => this.props.setSelectedTeam('right', teamName)}/>
-					</div>
+				<div id="contentContainer">
+					<Switch>
+						<Route path='/team/:teamName' render={props => <TeamEdit team={shared.funcs.getTeam(props.match.params.teamName)}/>}/>
+						<Route render={() => <PlayGame {...this.props}/>}/>
+					</Switch>
 				</div>
 
 				<div className="navContainer">
@@ -48,7 +35,6 @@ class AppClass extends React.Component {
 		);
 	}
 }
-
 
 AppClass.propTypes = {
 	// === STORE === //
