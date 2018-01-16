@@ -96,13 +96,36 @@ const shared = {
 		getTeam: teamName => {
 			const matches = store.getState().teams.filter(team => team.name === teamName);
 			return (matches && matches.length) ? matches[0] : false;
+		},
+
+		// order is basdon positions const
+		positionSortOrder: position => shared.consts.positions.indexOf(position),
+		positionType: position => {
+			return {
+				'QB': shared.consts.positionTypes.offense, 'WR': shared.consts.positionTypes.offense,
+				'RB': shared.consts.positionTypes.offense, 'FB': shared.consts.positionTypes.offense, 'OL': shared.consts.positionTypes.offense,
+
+				'DL': shared.consts.positionTypes.defense, 'LB': shared.consts.positionTypes.defense,
+				'CB': shared.consts.positionTypes.defense, 'S': shared.consts.positionTypes.defense,
+
+				'P': shared.consts.positionTypes.special, 'K': shared.consts.positionTypes.special,
+			}[position];
 		}
+
 	},
 	vars: {
 		// remote webservice - dev
 		urlBase: 'http://localhost:8080/football/',
 		// local static urls
 		// urlBase: 'http://localhost:8080/',
+	},
+	consts: {
+		positions: ['QB', 'WR', 'RB', 'FB', 'OL', 'DL', 'LB', 'CB', 'S', 'P', 'K',],
+		positionTypes: {
+			offense: 'Offense',
+			defense: 'Defense',
+			special: 'Special',
+		}
 	},
 };
 
