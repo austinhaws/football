@@ -1,1 +1,9 @@
 [ ] add a "check injuries" button - at end of each quarter, roll a d4 for each player that is injured and lower their injuries by that amount to see if they are aviallbe to play again
+
+[ ] single player edit
+	- heal injury
+	- delete
+	- edit scores
+	- add
+	- year end upgrades and drafting upgrade
+	- save button/validation

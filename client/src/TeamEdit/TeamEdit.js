@@ -17,9 +17,11 @@ class TeamEdit extends React.Component {
 		}, Object.keys(shared.consts.positionTypes).reduce((types, type) => {types[shared.consts.positionTypes[type]] = []; return types;}, {}));
 
 		return (
-			<div className="teamEditContainer">
-				<Link key="backButton" className="arrow" to="/">{svgs.arrowLeft()}</Link>
-				<div key="teamName" className="teamName">{this.props.team.name}</div>
+			<div className="team-edit-container">
+				<div className="title-container">
+					<Link key="backButton" className="arrow" to="/">{svgs.arrowLeft()}</Link>
+					<div key="teamName" className="team-name">{this.props.team.name}</div>
+				</div>
 				{Object.keys(shared.consts.positionTypes).map(type => <GroupTable key={type} positionType={shared.consts.positionTypes[type]} players={playersGrouped[shared.consts.positionTypes[type]]}/>)}
 			</div>
 		);

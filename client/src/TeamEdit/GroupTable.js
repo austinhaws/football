@@ -5,39 +5,49 @@ import shared from "../Shared";
 class GroupTable extends React.Component {
 	render() {
 		return (
-			<div className="teamEditContainer">
-				<div key="offenseLabel">{this.props.positionType}</div>
+			<div className="group-table-container">
+				<div key="offenseLabel" className="group-type-label">{this.props.positionType}</div>
 				<table key="playerTable">
 					<thead>
 					<tr>
-						<th>{/*checkbox*/}</th>
+						<th>Playing</th>
 						<th>Position</th>
 						<th>Injury</th>
 						{
 							this.props.positionType === shared.consts.positionTypes.special ?
-							<th>Skill</th> :
+							[<th key="run">Skill</th>, <th key="pass"/>] :
 							[<th key="run">Run</th>, <th key="pass">Pass</th>]
 						}
-						<th>{/*delete*/}</th>
 					</tr>
 					</thead>
 					<tbody>
 					{this.props.players.map((player, i) => {
 						return (
-							<tr key={i}>
-								<td><input type="checkbox" checked={player.playing}/> </td>
+							<tr key={i} className={[
+								player.injured ? 'injured' : '',
+								player.playing ? 'playing' : 'not-playing',
+							].join(' ')}>
+								<td>{player.injured ? false : <input type="checkbox" checked={player.playing}/>}</td>
 								<td>{player.position}</td>
 								<td>{player.injured}</td>
 								{
 									this.props.positionType === shared.consts.positionTypes.special ?
-										<th>{player.special}</th> :
-										[<th key="run">{player.run}</th>, <th key="pass">{player.pass}</th>]
+										[<td key="skill">{player.special}</td>, <td key="pass"/>] :
+										[<td key="run">{player.run}</td>, <td key="pass">{player.pass}</td>]
 								}
-								<td>delete</td>
 							</tr>
 						);
 					})}
 					</tbody>
+					<tfoot>
+						<tr>
+							<td>total playing / total possible slots</td>
+							<td>{/*position*/}</td>
+							<td>{/*injury*/}</td>
+							<td>Playign Run/Special total</td>
+							<td>Playign Pass total</td>
+						</tr>
+					</tfoot>
 				</table>
 
 			</div>

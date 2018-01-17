@@ -50,22 +50,73 @@
 	margin: -3px 8px 0;
 	font-weight: normal;
 }
-
+#react {
+	width: 777px;
+	margin: 0 auto;
+}
 .playGameContainer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	width: 777px;
-	margin: 0 auto;
 }
 
 button {
+	color: #acdf9a;
 	font-size: 12px;
-	background-color: #acdf9a;
 	border-radius: 5px;
 	line-height: 18px;
 	padding: 5px 9px;
 }
+button.small {
+	font-size: 9px;
+	border-radius: 3px;
+	line-height: 15px;
+	padding: 3px 6px;
+}
 button:hover {
 	background-color: #8eb87f;
 }
+button.bad {
+	color: red;
+	background-color: white;
+}
+
+.team-edit-container {
+	display:flex;
+	flex-direction: column;
+}
+.team-edit-container .title-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	line-height: 33px;
+}
+.team-edit-container .title-container div {
+	margin-left: 13px;
+	font-size:31px;
+}
+.group-table-container {
+	display: flex;
+	flex-direction: column;
+}
+.group-table-container .group-type-label {
+	padding-left: 116px;
+	font-size: 23px;
+}
+.group-table-container table {
+	width: 500px;
+	margin: 0 auto;
+}
+.group-table-container table td {
+	text-align: center;
+}
+.group-table-container table th {
+	width: 16%;
+}
+.group-table-container table tbody tr.injured {
+	background-color: #fff3f3;
+}
+.group-table-container table tr td {
+	padding: 3px;
+}
+
