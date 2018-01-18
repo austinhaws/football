@@ -61,7 +61,7 @@
 }
 
 button {
-	color: #acdf9a;
+	color: #49c31e;
 	font-size: 12px;
 	border-radius: 5px;
 	line-height: 18px;
@@ -74,7 +74,7 @@ button.small {
 	padding: 3px 6px;
 }
 button:hover {
-	background-color: #8eb87f;
+	background-color: #f0f0f0;
 }
 button.bad {
 	color: red;
@@ -120,3 +120,9 @@ button.bad {
 	padding: 3px;
 }
 
+.team-edit-container table {
+	margin-bottom: 27px;
+}
+.team-edit-container table tfoot tr {
+	border-top: 1px dotted black;
+}

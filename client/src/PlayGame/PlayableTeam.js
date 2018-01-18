@@ -21,18 +21,18 @@ class PlayableTeam extends React.Component {
 					</div>
 				</div>
 				<div className="offense-defense">
-					{this.props.side === 'right' ? 'Defense' : 'Offense'}<button>Roll w/ Bonus</button>
+					{this.props.side === 'right' ? 'Defense' : 'Offense'}
 				</div>
 				<div>
-					<div>Pass +10</div>
-					<div>Run +13</div>
+					<div><button>Roll w/ Bonus</button>Pass +10</div>
+					<div><button>Roll w/ Bonus</button>Run +13</div>
 				</div>
 				<div className="offense-defense">
-					{this.props.side === 'right' ? 'Offense' : 'Defense'}<button>Roll w/ Bonus</button>
+					{this.props.side === 'right' ? 'Offense' : 'Defense'}
 				</div>
 				<div>
-					<div>Pass +10</div>
-					<div>Run +13</div>
+					<div><button>Roll w/ Bonus</button>Pass +10</div>
+					<div><button>Roll w/ Bonus</button>Run +13</div>
 				</div>
 			</div>
 		);

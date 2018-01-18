@@ -5,10 +5,13 @@ import shared from "../Shared";
 import GroupTable from "./GroupTable";
 
 class TeamEdit extends React.Component {
+
 	render() {
 		if (!this.props.team) {
 			return null;
 		}
+
+		const playingTotals = shared.funcs.totalPlayingByPositionType(this.props.team.players);
 
 		this.props.team.players.sort((a, b) => shared.funcs.positionSortOrder(a.position) - shared.funcs.positionSortOrder(b.position));
 		const playersGrouped = this.props.team.players.reduce((groups, player) => {
@@ -22,7 +25,16 @@ class TeamEdit extends React.Component {
 					<Link key="backButton" className="arrow" to="/">{svgs.arrowLeft()}</Link>
 					<div key="teamName" className="team-name">{this.props.team.name}</div>
 				</div>
-				{Object.keys(shared.consts.positionTypes).map(type => <GroupTable key={type} positionType={shared.consts.positionTypes[type]} players={playersGrouped[shared.consts.positionTypes[type]]}/>)}
+				{Object.keys(shared.consts.positionTypes)
+					.map(type => shared.consts.positionTypes[type])
+					.map(type =>
+					<GroupTable
+						key={type}
+						positionType={type}
+						players={playersGrouped[type]}
+						totals={playingTotals[type]}
+					/>
+				)}
 			</div>
 		);
 	}
