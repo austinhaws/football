@@ -28,7 +28,7 @@ class GroupTable extends React.Component {
 								player.injured ? 'injured' : '',
 								player.playing ? 'playing' : 'not-playing',
 							].join(' ')}>
-								<td>{player.injured ? false : <input type="checkbox" checked={player.playing}/>}</td>
+								<td>{player.injured ? false : <input type="checkbox" checked={player.playing} onChange={() => this.props.onTogglePlayerPlaying( player)}/>}</td>
 								<td>{player.position}</td>
 								<td>{player.injured}</td>
 								{
@@ -61,6 +61,9 @@ GroupTable.propTypes = {
 	players: PropTypes.array.isRequired,
 	// result totals: {#playing/#possible, playingRunTotal, playingPassTotal}
 	totals: PropTypes.object.isRequired,
+
+	// a player's "playing" checkbox is clicked
+	onTogglePlayerPlaying: PropTypes.func.isRequired,
 };
 
 export default GroupTable;

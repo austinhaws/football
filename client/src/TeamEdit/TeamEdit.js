@@ -3,8 +3,12 @@ import {Link} from "react-router-dom";
 import svgs from "../SVGs";
 import shared from "../Shared";
 import GroupTable from "./GroupTable";
+import {withRouter} from "react-router";
+import {connect} from "react-redux";
+import reducers from "../Reducers";
+import PropTypes from "prop-types";
 
-class TeamEdit extends React.Component {
+class TeamEditClass extends React.Component {
 
 	render() {
 		if (!this.props.team) {
@@ -33,6 +37,7 @@ class TeamEdit extends React.Component {
 						positionType={type}
 						players={playersGrouped[type]}
 						totals={playingTotals[type]}
+						onTogglePlayerPlaying={player => this.props.onTogglePlayerPlaying(this.props.team, player)}
 					/>
 				)}
 			</div>
@@ -40,6 +45,18 @@ class TeamEdit extends React.Component {
 	}
 }
 
-TeamEdit.propTypes = {};
+TeamEditClass.propTypes = {
+	// which team is being edited, will be undefined if going to straight to editor before router pulls in correct team
+	team: PropTypes.object,
+};
+
+const TeamEdit = withRouter(connect(
+	state => state,
+	dispatch => {
+		return {
+			onTogglePlayerPlaying: (team, player) => dispatch({type: reducers.ACTION_TYPES.TOGGLE_PLAYER_PLAYING, payload: {team: team, player: player}}),
+		}
+	},
+)(TeamEditClass));
 
 export default TeamEdit;

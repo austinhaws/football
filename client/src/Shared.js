@@ -95,7 +95,7 @@ const shared = {
 
 		getTeam: teamName => {
 			const matches = store.getState().teams.filter(team => team.name === teamName);
-			return (matches && matches.length) ? matches[0] : false;
+			return (matches && matches.length) ? matches[0] : undefined;
 		},
 
 		// order is based on positions const
@@ -138,11 +138,13 @@ const shared = {
 					return allPlayers.concat(players.filter(player => player.position === position));
 				}, []);
 
+				const playersForGroupTypePlaying = playersForGroupType.filter(player => player.playing);
+
 				// get totals based on those players - assumes only one player is playing in a position (if two WRs marked as playing, this will not prevent that)
-				groupsTotals[groupType].totalPlaying = playersForGroupType.filter(player => player.playing).length;
-				groupsTotals[groupType].totalRun = playersForGroupType.reduce((total, player) => total + player.run, 0);
-				groupsTotals[groupType].totalPass = playersForGroupType.reduce((total, player) => total + player.pass, 0);
-				groupsTotals[groupType].totalSpecial = playersForGroupType.reduce((total, player) => total + player.special, 0);
+				groupsTotals[groupType].totalPlaying = playersForGroupTypePlaying.length;
+				groupsTotals[groupType].totalRun = playersForGroupTypePlaying.reduce((total, player) => total + player.run, 0);
+				groupsTotals[groupType].totalPass = playersForGroupTypePlaying.reduce((total, player) => total + player.pass, 0);
+				groupsTotals[groupType].totalSpecial = playersForGroupTypePlaying.reduce((total, player) => total + player.special, 0);
 
 				return groupsTotals;
 			}, Object.keys(shared.consts.positionTypes).reduce((groups, type) => {

@@ -51,7 +51,7 @@ const App = withRouter(connect(
 	state => state,
 	dispatch => {
 		return {
-		setSelectedTeam: (side, teamName) => dispatch({type: reducers.ACTION_TYPES.SET_SELECTED_TEAM, payload: {side: side, teamName: teamName}}),
+			setSelectedTeam: (side, teamName) => dispatch({type: reducers.ACTION_TYPES.SET_SELECTED_TEAM, payload: {side: side, teamName: teamName}}),
 		}
 	},
 )(AppClass));

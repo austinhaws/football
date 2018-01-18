@@ -13,6 +13,9 @@ let reducers = {
 
 		// set a picked team on one of the sides
 		SET_SELECTED_TEAM: 'SET_SELECTED_TEAM',
+
+		// toggle a player's playing status
+		TOGGLE_PLAYER_PLAYING: 'TOGGLE_PLAYER_PLAYING',
 	}
 };
 
@@ -42,11 +45,40 @@ reducers[reducers.ACTION_TYPES.SET_TEAMS] = (state, action) => {
 	return result;
 };
 
-// set csrf token/name
+// set which team is selected for a side of a game
 // payload: {name, token}
 reducers[reducers.ACTION_TYPES.SET_SELECTED_TEAM] = (state, action) => {
 	const result = clone(state);
 	result.selectedTeams[action.payload.side] = action.payload.teamName;
+	return result;
+};
+
+// toggle a player's "playing" status
+// payload: {name, token}
+reducers[reducers.ACTION_TYPES.TOGGLE_PLAYER_PLAYING] = (state, action) => {
+	const result = clone(state);
+
+	// get the team
+	const team = result.teams.filter(team => team.name === action.payload.team.name)[0];
+
+	// get the player
+	team.players.forEach(player => {
+		if (player.position === action.payload.player.position) {
+			if (
+				player.run === action.payload.player.run &&
+				player.pass === action.payload.player.pass &&
+				player.special === action.payload.player.special
+			) {
+				// matches on run/pass/special since there isn't any other identifier (maybe later add names)
+				player.playing = !player.playing;
+			} else {
+				// only one of a type playing at a time, if unchecking, then there shouldn't have been any checked anyways
+				player.playing = false;
+			}
+		}
+	});
+
+	//
 	return result;
 };
 
