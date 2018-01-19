@@ -104,6 +104,8 @@ const shared = {
 				groupsTotals[groupType].totalRun = playersForGroupTypePlaying.reduce((total, player) => total + player.run, 0);
 				groupsTotals[groupType].totalPass = playersForGroupTypePlaying.reduce((total, player) => total + player.pass, 0);
 				groupsTotals[groupType].totalSpecial = playersForGroupTypePlaying.reduce((total, player) => total + player.special, 0);
+				groupsTotals[groupType].totalKick = playersForGroupTypePlaying.reduce((total, player) => total + (player.position === 'K' ? player.special : 0), 0);
+				groupsTotals[groupType].totalPunt = playersForGroupTypePlaying.reduce((total, player) => total + (player.position === 'P' ? player.special : 0), 0);
 
 				return groupsTotals;
 			}, Object.keys(shared.consts.positionTypes).reduce((groups, type) => {
@@ -113,6 +115,8 @@ const shared = {
 					totalRun: 0,
 					totalPass: 0,
 					totalSpecial: 0,
+					totalPunt: 0,
+					totalKick: 0,
 				};
 				return groups;
 			}, {}));

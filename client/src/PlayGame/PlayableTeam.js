@@ -28,6 +28,13 @@ class PlayableTeam extends React.Component {
 						<div>Run: {totals[shared.consts.positionTypes.defense].totalRun}<button>Roll w/ Bonus</button></div>
 						<div>Pass: {totals[shared.consts.positionTypes.defense].totalPass}<button>Roll w/ Bonus</button></div>
 					</div>
+					<div className="offense-defense">
+						Special Teams
+					</div>
+					<div>
+						<div>Kick: {totals[shared.consts.positionTypes.special].totalKick}<button>Roll w/ Bonus</button></div>
+						<div>Punt: {totals[shared.consts.positionTypes.special].totalPunt}<button>Roll w/ Bonus</button></div>
+					</div>
 				</div>
 			);
 		}
