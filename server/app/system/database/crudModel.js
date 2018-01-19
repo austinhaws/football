@@ -1,4 +1,5 @@
 const mongo = require('./connection.js');
+const ObjectID = require('mongodb').ObjectID;
 
 
 /** generic crud for any table
@@ -31,6 +32,13 @@ function mongoErrorHandler(callback) {
 	}
 }
 
+function fixId(data) {
+	if (data._id && (typeof(data._id) === 'string')) {
+		data._id = ObjectID.createFromHexString(data._id)
+	}
+	return data;
+}
+
 /**
  * create an id object for the data
  *
@@ -50,7 +58,7 @@ module.exports = (collection, idField) => {
 
 		select: (idFieldValue, callback) => mongo.db.collection(collection).find(createIdObject(idField, idFieldValue)).toArray(mongoErrorHandler(callback)),
 
-		update: (data, callback) => mongo.db.collection(collection).updateOne(createIdObject(idField, data), data, mongoErrorHandler(callback)),
+		update: (data, callback) => mongo.db.collection(collection).updateOne(createIdObject(idField, data), fixId(data), mongoErrorHandler(callback)),
 
 		delete: (data, callback) => mongo.db.collection(collection).deleteOne(createIdObject(idField, data), data, mongoErrorHandler(callback)),
 

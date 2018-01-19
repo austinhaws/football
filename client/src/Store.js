@@ -1,6 +1,7 @@
 import React from "react";
 import {createStore} from "redux";
 import reducers from "./Reducers";
+import storeChanged from "./StoreChanged";
 
 // the store to connect all components to their data
 const store = createStore((state, action) => {
@@ -35,4 +36,6 @@ const store = createStore((state, action) => {
 	// for chrome redux plugin
 	, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+store.subscribe(storeChanged);
 export default store;

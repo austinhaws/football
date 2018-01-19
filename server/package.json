@@ -10,7 +10,7 @@
   "express-session": "^1.15.6",
   "guid": "0.0.12",
   "helmet": "^3.9.0",
-  "mongodb": "^3.0.1",
+  "mongodb": "^2.2.33",
   "mysql": "^2.15.0"
  },
  "scripts": {
