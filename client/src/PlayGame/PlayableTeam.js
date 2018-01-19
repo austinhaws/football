@@ -3,10 +3,34 @@ import PropTypes from "prop-types";
 import store from '../Store';
 import svgs from '../SVGs';
 import {Link} from "react-router-dom";
+import shared from "../Shared";
 
 
 class PlayableTeam extends React.Component {
 	render() {
+		let teamDetail = false;
+
+		if (this.props.team.name) {
+			const totals = shared.funcs.totalPlayingByPositionType(this.props.team.players);
+			teamDetail = (
+				<div>
+					<div className="offense-defense">
+						{this.props.side === 'right' ? 'Defense' : 'Offense'}
+					</div>
+					<div>
+						<div>Run: {totals[shared.consts.positionTypes.offense].totalRun}<button>Roll w/ Bonus</button></div>
+						<div>Pass: {totals[shared.consts.positionTypes.offense].totalPass}<button>Roll w/ Bonus</button></div>
+					</div>
+					<div className="offense-defense">
+						{this.props.side === 'right' ? 'Offense' : 'Defense'}
+					</div>
+					<div>
+						<div>Run: {totals[shared.consts.positionTypes.defense].totalRun}<button>Roll w/ Bonus</button></div>
+						<div>Pass: {totals[shared.consts.positionTypes.defense].totalPass}<button>Roll w/ Bonus</button></div>
+					</div>
+				</div>
+			);
+		}
 		return (
 			<div className={`playable-team ${this.props.side}`}>
 				<div className="name-row">
@@ -20,20 +44,7 @@ class PlayableTeam extends React.Component {
 						</select>
 					</div>
 				</div>
-				<div className="offense-defense">
-					{this.props.side === 'right' ? 'Defense' : 'Offense'}
-				</div>
-				<div>
-					<div><button>Roll w/ Bonus</button>Pass +10</div>
-					<div><button>Roll w/ Bonus</button>Run +13</div>
-				</div>
-				<div className="offense-defense">
-					{this.props.side === 'right' ? 'Offense' : 'Defense'}
-				</div>
-				<div>
-					<div><button>Roll w/ Bonus</button>Pass +10</div>
-					<div><button>Roll w/ Bonus</button>Run +13</div>
-				</div>
+				{teamDetail}
 			</div>
 		);
 	}

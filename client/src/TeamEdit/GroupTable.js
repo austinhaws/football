@@ -13,12 +13,14 @@ class GroupTable extends React.Component {
 					<tr>
 						<th>Playing</th>
 						<th>Position</th>
+						<th>Age</th>
 						<th>Injury</th>
 						{
 							isSpecial ?
 							[<th key="run">Skill</th>, <th key="pass"/>] :
 							[<th key="run">Run</th>, <th key="pass">Pass</th>]
 						}
+						<th>{/*buttons*/}</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -28,16 +30,17 @@ class GroupTable extends React.Component {
 								player.injured !== 0 ? 'injured' : '',
 								player.playing ? 'playing' : 'not-playing',
 							].join(' ')}
-								onClick={() => this.props.onEditPlayer(player, i)}
 							>
-								<td>{player.injured !== 0 ? false : <input type="checkbox" checked={player.playing} onChange={() => this.props.onTogglePlayerPlaying( player)}/>}</td>
+								<td>{player.injured !== 0 ? false : <input type="checkbox" checked={player.playing} onChange={() => 									this.props.onTogglePlayerPlaying(player)}/>}</td>
 								<td>{player.position}</td>
+								<td>{player.age}</td>
 								<td>{player.injured === 0 ? '' : player.injured}</td>
 								{
 									isSpecial ?
 										[<td key="skill">{player.special}</td>, <td key="pass"/>] :
 										[<td key="run">{player.run}</td>, <td key="pass">{player.pass}</td>]
 								}
+								<td><button onClick={() => this.props.onEditPlayer(player, i)}>Edit</button></td>
 							</tr>
 						);
 					})}
@@ -46,9 +49,11 @@ class GroupTable extends React.Component {
 						<tr>
 							<td>{this.props.totals.totalPlaying} / {this.props.totals.totalPositions}</td>
 							<td>{/*position*/}</td>
+							<td>{/*age*/}</td>
 							<td>{/*injury*/}</td>
 							<td>{isSpecial ? this.props.totals.totalSpecial : this.props.totals.totalRun}</td>
 							<td>{isSpecial ? false : this.props.totals.totalPass}</td>
+							<td>{/*buttons*/}</td>
 						</tr>
 					</tfoot>
 				</table>

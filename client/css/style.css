@@ -148,3 +148,9 @@ button.bad {
 .player-field.buttons {
 	margin-top: 22px;
 }
+.playable-team button {
+	margin-left: 11px;
+}
+.playable-team .offense-defense + div div {
+	margin: 10px 0;
+}
