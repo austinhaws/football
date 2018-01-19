@@ -31,6 +31,11 @@ const store = createStore((state, action) => {
 			left: '',
 			right: '',
 		},
+
+		// which player is currenlty being edited
+		editingPlayer: undefined,
+		// because we know the player's id before the teams, stach the id here until the teams load
+		editingPlayerId: undefined,
 	}
 
 	// for chrome redux plugin

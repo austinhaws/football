@@ -25,14 +25,14 @@ class GroupTable extends React.Component {
 					{this.props.players.map((player, i) => {
 						return (
 							<tr key={i} className={[
-								player.injured ? 'injured' : '',
+								player.injured !== 0 ? 'injured' : '',
 								player.playing ? 'playing' : 'not-playing',
 							].join(' ')}
 								onClick={() => this.props.onEditPlayer(player, i)}
 							>
-								<td>{player.injured ? false : <input type="checkbox" checked={player.playing} onChange={() => this.props.onTogglePlayerPlaying( player)}/>}</td>
+								<td>{player.injured !== 0 ? false : <input type="checkbox" checked={player.playing} onChange={() => this.props.onTogglePlayerPlaying( player)}/>}</td>
 								<td>{player.position}</td>
-								<td>{player.injured}</td>
+								<td>{player.injured === 0 ? '' : player.injured}</td>
 								{
 									isSpecial ?
 										[<td key="skill">{player.special}</td>, <td key="pass"/>] :

@@ -11,7 +11,6 @@ import PlayGame from "./PlayGame/PlayGame";
 import TeamEdit from "./TeamEdit/TeamEdit";
 import PlayerEdit from "./PlayerEdit/PlayerEdit";
 
-
 class AppClass extends React.Component {
 	constructor(props) {
 		super(props);
@@ -25,8 +24,13 @@ class AppClass extends React.Component {
 
 				<div id="contentContainer">
 					<Switch>
-						<Route path='/team/:teamName' render={props => <TeamEdit team={shared.funcs.getTeam(props.match.params.teamName)}/>}/>
-						<Route path='/player/:playerUniqueId' render={props => <PlayerEdit player={shared.funcs.getPlayerByUniqueId(props.match.params.playerUniqueId)}/>}/>
+						<Route
+							path='/team/:teamName'
+							render={props => <TeamEdit team={shared.funcs.getTeam(props.match.params.teamName)}/>}/>
+						<Route
+							path='/player/:playerUniqueId'
+							render={props => <PlayerEdit routePlayerUniqueId={props.match.params.playerUniqueId}/>}
+							onEnter={props => store.dispatch({type: reducers.ACTION_TYPES.SET_EDITING_PLAYER_ID, payload: props.match.params.playerUniqueId})}/>
 						<Route render={() => <PlayGame {...this.props}/>}/>
 					</Switch>
 				</div>

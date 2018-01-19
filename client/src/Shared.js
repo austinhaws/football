@@ -54,6 +54,7 @@ const shared = {
 			return (matches && matches.length) ? matches[0] : undefined;
 		},
 
+		// save a whole team
 		saveTeam: team => shared.funcs.ajaxPost('team/save', {team: team}),
 
 		// order is based on positions const

@@ -16,6 +16,12 @@ let reducers = {
 
 		// toggle a player's playing status
 		TOGGLE_PLAYER_PLAYING: 'TOGGLE_PLAYER_PLAYING',
+
+		// a player editable field has been changed
+		PLAYER_FIELD_CHANGED: 'PLAYER_FIELD_CHANGED',
+
+		// set the id of the player to edit
+		SET_EDITING_PLAYER_ID: 'SET_EDITING_PLAYER_ID',
 	}
 };
 
@@ -40,8 +46,13 @@ reducers[reducers.ACTION_TYPES.SET_AJAXING] = (state, action) => {
 // set csrf token/name
 // payload: {name, token}
 reducers[reducers.ACTION_TYPES.SET_TEAMS] = (state, action) => {
-	const result = clone(state);
+	let result = clone(state);
 	result.teams = action.payload;
+
+	// if editing a player, then load that player now that data is available
+	if (result.editingPlayerId) {
+		result = reducers[reducers.ACTION_TYPES.SET_EDITING_PLAYER_ID](result, {payload: result.editingPlayerId});
+	}
 	return result;
 };
 
@@ -77,5 +88,39 @@ reducers[reducers.ACTION_TYPES.TOGGLE_PLAYER_PLAYING] = (state, action) => {
 	return result;
 };
 
+// set a field in a player
+// payload: {uniqueId, field, value}
+reducers[reducers.ACTION_TYPES.PLAYER_FIELD_CHANGED] = (state, action) => {
+	const result = clone(state);
+	result.editingPlayer[action.payload.field] = action.payload.value;
+	return result;
+};
+
+
+// set the currently being edited player information
+reducers[reducers.ACTION_TYPES.SET_EDITING_PLAYER_ID] = (state, action) => {
+	const result = clone(state);
+
+	result.editingPlayerId = action.payload;
+	if (result.teams && result.teams.length) {
+		result.editingPlayer = clone(getPlayerById(result.teams, action.payload));
+	} else {
+		result.editingPlayer = undefined;
+	}
+	return result;
+};
+
+/**
+ * find a player given its unique id
+ * @param teams the teams of the state to search (parameter since state may have just been cloned)
+ * @param playerId the player's id to match
+ */
+function getPlayerById(teams, playerId) {
+	return teams
+		.reduce((players, team) => players.concat(team.players), [])
+		// find just the player being changed
+		.find(player => playerId === player.uniqueId);
+
+}
 
 export default reducers;

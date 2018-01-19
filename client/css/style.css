@@ -130,3 +130,21 @@ button.bad {
 .team-edit-container table tbody td {
 	cursor: pointer;
 }
+
+.player-edit {
+	margin-top: 33px;
+}
+
+.player-field {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.player-field-label {
+	width: 150px;
+	text-align: right;
+	margin-right: 12px;
+}
+.player-field.buttons {
+	margin-top: 22px;
+}
