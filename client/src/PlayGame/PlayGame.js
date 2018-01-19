@@ -5,6 +5,10 @@ import shared from "../Shared";
 
 
 class PlayGame extends React.Component {
+	doRoll(teamName, positionType, playType) {
+		console.log({teamName, positionType, playType});
+	}
+
 	render() {
 		let leftTeam = shared.funcs.getTeam(this.props.selectedTeams.left);
 		let rightTeam = shared.funcs.getTeam(this.props.selectedTeams.right);
@@ -15,7 +19,10 @@ class PlayGame extends React.Component {
 					<PlayableTeam
 						side="left"
 						team={leftTeam ? leftTeam : {}}
-						onTeamChanged={teamName => this.props.setSelectedTeam('left', teamName)}/>
+						onTeamChanged={teamName => this.props.setSelectedTeam('left', teamName)}
+						onRoll={this.doRoll.bind(this)}
+						showRollButtons={!!(leftTeam && rightTeam)}
+					/>
 				</div>
 				<div className="outputContainer">
 					show output here
@@ -24,7 +31,10 @@ class PlayGame extends React.Component {
 					<PlayableTeam
 						team={rightTeam ? rightTeam : {}}
 						side="right"
-						onTeamChanged={teamName => this.props.setSelectedTeam('right', teamName)}/>
+						onTeamChanged={teamName => this.props.setSelectedTeam('right', teamName)}
+						onRoll={this.doRoll.bind(this)}
+						showRollButtons={!!(leftTeam && rightTeam)}
+					/>
 				</div>
 			</div>
 		);

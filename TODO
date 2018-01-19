@@ -1,9 +1,94 @@
 [ ] add a "check injuries" button - at end of each quarter, roll a d4 for each player that is injured and lower their injuries by that amount to see if they are aviallbe to play again
 
-[ ] single player edit
-	- heal injury
-	- delete
-	- edit scores
-	- add
-	- year end upgrades and drafting upgrade
-	- save button/validation
+[ ] add player
+[ ] delete player
+[ ] year end upgrades and drafting upgrade
+
+•end of year upgrading
+up all ages by one year
+
+[ ] year end
+• determine if getting +/-
+1) 50/50 @ average career length
+	+10 each year over
+	-10 each year under
+2) roll on increase type chart: if result is less than 0, then player retires
+3) roll for change and apply to player (never below 0)
+
+[ ] add schedule/bracket page
+
+[ ] Rolling
+	each player rolls 3d6 and adds run/pass for offense/defense
+	offense: doubles and won then go 20 yards; triples = move number rolled
+	defense: triples = turn over
+	one player gets the bonus d4 dice for having picked run/pass right
+	roll injury dice - d20 and === 1? 1:20 chance seems like one per game
+		roll for which player got injured - if that player type is not playing then try again
+		Run play
+		QB - 10
+		WR - 15
+		RB - 65
+		OL - 90
+		FB - 100
+
+		DL - 35
+		LB - 70
+		CB - 90
+		S - 100
+
+		Pass
+		QB - 30
+		WR - 60
+		RB - 70
+		OL - 80
+		FB - 100
+
+		DL - 10
+		LB - 30
+		CB - 65
+		S - 100
+
+		special
+		K/P - 50
+		OL - 100
+
+		K/P - 50
+		DL - 100
+	roll penalty dice - offense and defense : if both penalty then replay down
+		1:10 seems less likely of an occurrence
+
+
+
+[ ] rules: on 2 pt conversion, defense always gets bonus dice
+[ ] kicker is the # of retries?
+[ ] punter is the +/- max possible: pick before rolling
+
+
+make cards have run/pass on their back and run/back underneath. that way can be tricky and look like running, but actually passing.
+
+
+[ ] drafting
+	each player gets a "draft level" telling what types of rolls they will get when made
+	level 1 : <= 5% : d4 on both
+	level 2 : <= 10% : d4 on one
+	level 3 : <= 25% : d3 on both
+	level 4 : <= 40% : d3 on one
+	level 5 : <= 70% : d2 on both
+	level 6 : <= 100% : d2 on one
+	* chance of run/pass by position
+	QB: 50/50
+	WR: 25/75
+	RB: 75/25
+	OL: 50/50
+	FB: 75/25
+	DL: 50/50
+	LB: 50/50
+	CB: 25/75
+	S: 15/85
+
+did 2 guys per position for a 4 team draft
+[ ] starting teams:
+	• roll d6 for years for each player
+	• randomly select 5 playres that get a d6 added to either run or pass (50% chance either)
+
+

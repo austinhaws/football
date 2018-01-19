@@ -134,6 +134,10 @@ const shared = {
 			offense: 'Offense',
 			defense: 'Defense',
 			special: 'Special',
+		},
+		playTypes: {
+			run: 'run',
+			pass: 'pass',
 		}
 	},
 };

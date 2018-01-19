@@ -18,22 +18,22 @@ class PlayableTeam extends React.Component {
 						{this.props.side === 'right' ? 'Defense' : 'Offense'}
 					</div>
 					<div>
-						<div>Run: {totals[shared.consts.positionTypes.offense].totalRun}<button>Roll w/ Bonus</button></div>
-						<div>Pass: {totals[shared.consts.positionTypes.offense].totalPass}<button>Roll w/ Bonus</button></div>
+						<div>Run: {totals[shared.consts.positionTypes.offense].totalRun}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.defense : shared.consts.positionTypes.offense, shared.consts.playTypes.run)}>Roll w/ Bonus</button> : false}</div>
+						<div>Pass: {totals[shared.consts.positionTypes.offense].totalPass}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.defense : shared.consts.positionTypes.offense, shared.consts.playTypes.pass)}>Roll w/ Bonus</button> : false}</div>
 					</div>
 					<div className="offense-defense">
 						{this.props.side === 'right' ? 'Offense' : 'Defense'}
 					</div>
 					<div>
-						<div>Run: {totals[shared.consts.positionTypes.defense].totalRun}<button>Roll w/ Bonus</button></div>
-						<div>Pass: {totals[shared.consts.positionTypes.defense].totalPass}<button>Roll w/ Bonus</button></div>
+						<div>Run: {totals[shared.consts.positionTypes.defense].totalRun}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.offense : shared.consts.positionTypes.defense, shared.consts.playTypes.run)}>Roll w/ Bonus</button> : false}</div>
+						<div>Pass: {totals[shared.consts.positionTypes.defense].totalPass}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.offense : shared.consts.positionTypes.defense, shared.consts.playTypes.pass)}>Roll w/ Bonus</button> : false}</div>
 					</div>
 					<div className="offense-defense">
 						Special Teams
 					</div>
 					<div>
-						<div>Kick: {totals[shared.consts.positionTypes.special].totalKick}<button>Roll w/ Bonus</button></div>
-						<div>Punt: {totals[shared.consts.positionTypes.special].totalPunt}<button>Roll w/ Bonus</button></div>
+						<div>Kick: {totals[shared.consts.positionTypes.special].totalKick}</div>
+						<div>Punt: {totals[shared.consts.positionTypes.special].totalPunt}</div>
 					</div>
 				</div>
 			);
@@ -65,6 +65,11 @@ PlayableTeam.propTypes = {
 
 	// the selected team was changed
 	onTeamChanged: PropTypes.func.isRequired,
+
+	// roll was clicked, do a roll
+	onRoll: PropTypes.func.isRequired,
+	// show roll buttons
+	showRollButtons: PropTypes.bool.isRequired,
 };
 
 export default PlayableTeam;
