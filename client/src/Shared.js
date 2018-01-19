@@ -42,6 +42,13 @@ const shared = {
 			shared.funcs.getTeams();
 		},
 
+		getPlayerByUniqueId: playerUniqueId => store.getState().teams
+			// get teams' players list
+			.reduce((players, team) => players.concat(team.players), [])
+			// find the desired player
+			.find(player => player.uniqueId === playerUniqueId),
+
+
 		getTeam: teamName => {
 			const matches = store.getState().teams.filter(team => team.name === teamName);
 			return (matches && matches.length) ? matches[0] : undefined;

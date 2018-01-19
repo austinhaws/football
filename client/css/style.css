@@ -126,3 +126,7 @@ button.bad {
 .team-edit-container table tfoot tr {
 	border-top: 1px dotted black;
 }
+
+.team-edit-container table tbody td {
+	cursor: pointer;
+}

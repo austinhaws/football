@@ -27,7 +27,9 @@ class GroupTable extends React.Component {
 							<tr key={i} className={[
 								player.injured ? 'injured' : '',
 								player.playing ? 'playing' : 'not-playing',
-							].join(' ')}>
+							].join(' ')}
+								onClick={() => this.props.onEditPlayer(player, i)}
+							>
 								<td>{player.injured ? false : <input type="checkbox" checked={player.playing} onChange={() => this.props.onTogglePlayerPlaying( player)}/>}</td>
 								<td>{player.position}</td>
 								<td>{player.injured}</td>
@@ -64,6 +66,8 @@ GroupTable.propTypes = {
 
 	// a player's "playing" checkbox is clicked
 	onTogglePlayerPlaying: PropTypes.func.isRequired,
+	// need to edit a player by going to its url, let the parent know
+	onEditPlayer: PropTypes.func.isRequired,
 };
 
 export default GroupTable;

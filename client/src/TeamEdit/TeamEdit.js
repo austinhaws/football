@@ -38,7 +38,8 @@ class TeamEditClass extends React.Component {
 						players={playersGrouped[type]}
 						totals={playingTotals[type]}
 						onTogglePlayerPlaying={player => this.props.onTogglePlayerPlaying(this.props.team, player)}
-					/>
+						onEditPlayer={player => this.props.history.push(`/player/${player.uniqueId}`)}
+						/>
 				)}
 			</div>
 		);

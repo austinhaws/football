@@ -1,6 +1,11 @@
 {
  "name": "football-server",
  "main": "server.js",
+ "description": "server for saving football data through to mongo",
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/austinhaws/football"
+ },
  "dependencies": {
   "body-parser": "~1.18.2",
   "clone": "^2.1.1",
@@ -11,10 +16,13 @@
   "guid": "0.0.12",
   "helmet": "^3.9.0",
   "mongodb": "^2.2.33",
+  "uuid": "^3.2.1",
   "mysql": "^2.15.0"
  },
  "scripts": {
   "run": "node server.js",
   "watch": "nodemon server.js"
- }
+ },
+ "author": "Austin Haws",
+ "license": "ISC"
 }

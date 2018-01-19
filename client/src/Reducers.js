@@ -64,15 +64,10 @@ reducers[reducers.ACTION_TYPES.TOGGLE_PLAYER_PLAYING] = (state, action) => {
 	// get the player
 	team.players.forEach(player => {
 		if (player.position === action.payload.player.position) {
-			if (
-				player.run === action.payload.player.run &&
-				player.pass === action.payload.player.pass &&
-				player.special === action.payload.player.special
-			) {
-				// matches on run/pass/special since there isn't any other identifier (maybe later add names)
+			if (player.uniqueId === action.payload.player.uniqueId) {
 				player.playing = !player.playing;
 			} else {
-				// only one of a type playing at a time, if unchecking, then there shouldn't have been any checked anyways
+				// only one of a type playing at a time; if unchecking, then there shouldn't have been any checked anyways
 				player.playing = false;
 			}
 		}
