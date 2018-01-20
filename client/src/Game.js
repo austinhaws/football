@@ -87,6 +87,14 @@ export default {
 		output.push(`${offTeam.name}: ${offenseRolls.rolls.join(' + ')}${offenseRolls.bonus ? ' + ' + offenseRolls.bonus : ''} + ${offBonus}`);
 		output.push(`${defTeam.name}: ${defenseRolls.rolls.join(' + ')}${defenseRolls.bonus ? ' + ' + defenseRolls.bonus : ''} + ${defBonus}`);
 
+		// check injuries
+		if (offenseRolls.injury) {
+			output.push(`${offTeam.name} Injury!`);
+		}
+		if (defenseRolls.injury) {
+			output.push(`${defTeam.name} Injury!`);
+		}
+
 		return {output, offenseRolls, defenseRolls}
 	},
 }
