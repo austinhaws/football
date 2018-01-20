@@ -10,6 +10,11 @@ class PlayableTeam extends React.Component {
 	render() {
 		let teamDetail = false;
 
+		const offenseDefenseMatrix = [shared.consts.positionTypes.offense, shared.consts.positionTypes.defense];
+		if (this.props.side === 'right') {
+			offenseDefenseMatrix.reverse();
+		}
+
 		if (this.props.team.name) {
 			const totals = shared.funcs.totalPlayingByPositionType(this.props.team.players);
 			teamDetail = (
@@ -18,15 +23,15 @@ class PlayableTeam extends React.Component {
 						{this.props.side === 'right' ? 'Defense' : 'Offense'}
 					</div>
 					<div>
-						<div>Run: {totals[shared.consts.positionTypes.offense].totalRun}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.defense : shared.consts.positionTypes.offense, shared.consts.playTypes.run)}>Roll w/ Bonus</button> : false}</div>
-						<div>Pass: {totals[shared.consts.positionTypes.offense].totalPass}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.defense : shared.consts.positionTypes.offense, shared.consts.playTypes.pass)}>Roll w/ Bonus</button> : false}</div>
+						<div>Run: {totals[offenseDefenseMatrix[0]].totalRun}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, offenseDefenseMatrix[0], shared.consts.playTypes.run)}>Roll w/ Bonus</button> : false}</div>
+						<div>Pass: {totals[offenseDefenseMatrix[0]].totalPass}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, offenseDefenseMatrix[0], shared.consts.playTypes.pass)}>Roll w/ Bonus</button> : false}</div>
 					</div>
 					<div className="offense-defense">
 						{this.props.side === 'right' ? 'Offense' : 'Defense'}
 					</div>
 					<div>
-						<div>Run: {totals[shared.consts.positionTypes.defense].totalRun}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.offense : shared.consts.positionTypes.defense, shared.consts.playTypes.run)}>Roll w/ Bonus</button> : false}</div>
-						<div>Pass: {totals[shared.consts.positionTypes.defense].totalPass}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, this.props.side === 'right' ? shared.consts.positionTypes.offense : shared.consts.positionTypes.defense, shared.consts.playTypes.pass)}>Roll w/ Bonus</button> : false}</div>
+						<div>Run: {totals[offenseDefenseMatrix[1]].totalRun}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, offenseDefenseMatrix[1], shared.consts.playTypes.run)}>Roll w/ Bonus</button> : false}</div>
+						<div>Pass: {totals[offenseDefenseMatrix[1]].totalPass}{this.props.showRollButtons ? <button onClick={() => this.props.onRoll(this.props.team.name, offenseDefenseMatrix[1], shared.consts.playTypes.pass)}>Roll w/ Bonus</button> : false}</div>
 					</div>
 					<div className="offense-defense">
 						Special Teams

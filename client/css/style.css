@@ -154,3 +154,6 @@ button.bad {
 .playable-team .offense-defense + div div {
 	margin: 10px 0;
 }
+.outputContainer {
+	width: 300px;
+}

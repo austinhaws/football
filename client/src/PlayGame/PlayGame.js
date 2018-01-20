@@ -2,11 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlayableTeam from "./PlayableTeam";
 import shared from "../Shared";
+import game from "../Game";
 
 
 class PlayGame extends React.Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			output: [],
+		}
+	}
 	doRoll(teamName, positionType, playType) {
-		console.log({teamName, positionType, playType});
+
+		const teams = [shared.funcs.getTeam(this.props.selectedTeams.left), shared.funcs.getTeam(this.props.selectedTeams.right)];
+		// put offensive team first
+		if (teams[positionType === shared.consts.positionTypes.offense ? 0 : 1].name !== teamName) {
+			teams.reverse();
+		}
+		// since offense is first, then get bonuses with offense first
+		const bonuses = teams
+			.map(team => shared.funcs.totalPlayingByPositionType(team.players))
+			.map((total, i) => total[i === 0 ? shared.consts.positionTypes.offense : shared.consts.positionTypes.defense][playType === shared.consts.playTypes.pass ? 'totalPass' : 'totalRun']);
+
+		// offense is first, so pass in team/bonuses
+		this.setState({output: game.rollTeamDown(bonuses[0], teams[0], bonuses[1], teams[1], shared.consts.positionTypes.offense === positionType).output});
 	}
 
 	render() {
@@ -25,7 +46,7 @@ class PlayGame extends React.Component {
 					/>
 				</div>
 				<div className="outputContainer">
-					show output here
+					{this.state.output.map((output, i) => <div key={i}>{output}</div>)}
 				</div>
 				<div className="teamContainer">
 					<PlayableTeam

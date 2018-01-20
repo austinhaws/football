@@ -138,6 +138,14 @@ const shared = {
 		playTypes: {
 			run: 'run',
 			pass: 'pass',
+		},
+		rolls: {
+			// sides of dice for these types of rolls
+			percentile: 100,
+			injury: 20,
+			penalty: 10,
+			bonus: 4,
+			singleDown: 6,
 		}
 	},
 };

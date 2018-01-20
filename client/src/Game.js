@@ -1,31 +1,27 @@
 import React from "react";
-import chance from "chance";
+import Chance from "chance";
+import shared from "./Shared";
 
-class Roll {
-	constructor(sides, result) {
-		this.sides = sides;
-		this.result = result;
-	}
-}
+const chance = new Chance();
 
 const rollTypes = {
 	// 1-100%
-	percentile: (sides = 100) => chance.integer({min: 1, max: sides}),
+	percentile: () => chance.integer({min: 1, max: shared.consts.rolls.percentile}),
 	// 1:X chance someone got hurt
-	injuryRoll: (sides = 20) => chance.integer({min: 1, max: sides}),
+	injuryRoll: () => chance.integer({min: 1, max: shared.consts.rolls.injury}),
 	// 1:X chance that a penalty occurred
-	penaltyRoll: (sides = 10) => chance.integer({min: 1, max: sides}),
+	penaltyRoll: () => chance.integer({min: 1, max: shared.consts.rolls.penalty}),
 	// bonus to add to the total roll result
-	bonusRoll: (sides = 4) => new Roll(sides, chance.integer({min: 1, max: sides})),
+	bonusRoll: () => chance.integer({min: 1, max: shared.consts.rolls.bonus}),
 	// roll a single d6 (3 total per team for a down)
-	singleDownRoll: (sides = 6) => new Roll(sides, chance.integer({min: 1, max: sides})),
+	singleDownRoll: () => chance.integer({min: 1, max: shared.consts.rolls.singleDown}),
 
 	// what happened this down for this team?
 	downRoll: getsBonus => {
 		const rolls = [
-			new Roll(6, rollTypes.singleDownRoll()),
-			new Roll(6, rollTypes.singleDownRoll()),
-			new Roll(6, rollTypes.singleDownRoll()),
+			rollTypes.singleDownRoll(),
+			rollTypes.singleDownRoll(),
+			rollTypes.singleDownRoll(),
 		];
 		const result = {
 			// the standard 3d6
@@ -41,7 +37,7 @@ const rollTypes = {
 			// did this team get a bonus to their roll and if so how much
 			bonus: getsBonus ? rollTypes.bonusRoll() : undefined,
 		};
-		result.total = result.rolls.map(roll => roll.result).reduce((total, roll) => total + roll, 0) + (result.bonus ? result.bonus.result : 0);
+		result.total = result.rolls.reduce((total, roll) => total + roll, 0) + (result.bonus ? result.bonus : 0);
 		return result;
 	},
 	// is it all the same?
@@ -66,15 +62,15 @@ export default {
 			output.push('Defensive penalty');
 		}
 
-		output.push(`${offTeam.name}: ${offenseRolls.total}         ${defTeam.name}: ${defenseRolls.total}`);
+		const totals = {[shared.consts.positionTypes.offense]: offenseRolls.total + offBonus, [shared.consts.positionTypes.defense]: defenseRolls.total + defBonus};
 
 		// check who won the roll
 		if (defenseRolls.triples) {
-			output.push(`Turnover! ${defTeam.name} advances ${defenseRolls.rolls[0].value} yards`);
+			output.push(`Turnover! ${defTeam.name} advances ${defenseRolls.rolls[0]} yards`);
 		} else {
-			if (offenseRolls.total >= defenseRolls.total) {
+			if (totals[shared.consts.positionTypes.offense] >= totals[shared.consts.positionTypes.defense]) {
 				if (offenseRolls.triples) {
-					output.push(`Long Bomb! ${offTeam.name} advances ${offenseRolls.rolls[0].value} yards`);
+					output.push(`Long Bomb! ${offTeam.name} advances ${offenseRolls.rolls[0]} yards`);
 				} else if (offenseRolls.doubles) {
 					output.push(`Big play. ${offTeam.name} advances 20 yards`);
 				} else {
@@ -85,11 +81,11 @@ export default {
 			}
 		}
 
+		output.push(`${offTeam.name}: ${totals[shared.consts.positionTypes.offense]}         ${defTeam.name}: ${totals[shared.consts.positionTypes.defense]}`);
+
 		//show rolls
-		[offenseRolls, defenseRolls]
-			.map(rolls => rolls.rolls
-				.reduce(roll => `d${roll.sides} (${roll.value})`))
-			.forEach(rollResult => output.push(rollResult));
+		output.push(`${offTeam.name}: ${offenseRolls.rolls.join(' + ')}${offenseRolls.bonus ? ' + ' + offenseRolls.bonus : ''} + ${offBonus}`);
+		output.push(`${defTeam.name}: ${defenseRolls.rolls.join(' + ')}${defenseRolls.bonus ? ' + ' + defenseRolls.bonus : ''} + ${defBonus}`);
 
 		return {output, offenseRolls, defenseRolls}
 	},
