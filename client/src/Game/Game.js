@@ -66,7 +66,7 @@ export default {
 
 		// check who won the roll
 		if (defenseRolls.triples) {
-			output.push(`Turnover! ${defTeam.name} advances ${defenseRolls.rolls[0]} yards`);
+			output.push(`Turnover! ${defTeam.name} advances ${defenseRolls.rolls[0]}0 yards`);
 		} else {
 			if (totals[shared.consts.positionTypes.offense] >= totals[shared.consts.positionTypes.defense]) {
 				if (offenseRolls.triples) {

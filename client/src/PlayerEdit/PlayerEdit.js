@@ -94,10 +94,15 @@ const PlayerEdit = withRouter(connect(
 	state => state,
 	dispatch => {
 		return {
-			playerFieldChanged: (field, value) => dispatch({type: reducers.ACTION_TYPES.PLAYER_FIELD_CHANGED, payload: {field: field, value: field === 'position' ? value : parseInt(value, 10)}}),
+			playerFieldChanged: (field, value) => dispatch({type: reducers.ACTION_TYPES.PLAYER_FIELD_CHANGED, payload: {field: field, value: field === 'position' ? value : parseIntToBlank(value, 10)}}),
 			setPlayerEditing: playerUniqueId => dispatch({type: reducers.ACTION_TYPES.SET_EDITING_PLAYER_ID, payload: playerUniqueId}),
 		}
 	},
 )(PlayerEditClass));
+
+function parseIntToBlank(value) {
+	const result = parseInt(value, 10);
+	return isNaN(result) ? '' : result;
+}
 
 export default withRouter(PlayerEdit);
