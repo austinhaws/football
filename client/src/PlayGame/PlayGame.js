@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlayableTeam from "./PlayableTeam";
 import shared from "../Shared";
-import game from "../Game";
+import game from "../Game/Game";
+import {Link} from "react-router-dom";
 
 
 class PlayGame extends React.Component {
@@ -35,27 +36,32 @@ class PlayGame extends React.Component {
 		let rightTeam = shared.funcs.getTeam(this.props.selectedTeams.right);
 
 		return (
-			<div className="playGameContainer">
-				<div className="teamContainer">
-					<PlayableTeam
-						side="left"
-						team={leftTeam ? leftTeam : {}}
-						onTeamChanged={teamName => this.props.setSelectedTeam('left', teamName)}
-						onRoll={this.doRoll.bind(this)}
-						showRollButtons={!!(leftTeam && rightTeam)}
-					/>
+			<div>
+				<div className="playGameContainer">
+					<div className="teamContainer">
+						<PlayableTeam
+							side="left"
+							team={leftTeam ? leftTeam : {}}
+							onTeamChanged={teamName => this.props.setSelectedTeam('left', teamName)}
+							onRoll={this.doRoll.bind(this)}
+							showRollButtons={!!(leftTeam && rightTeam)}
+						/>
+					</div>
+					<div className="outputContainer">
+						{this.state.output.map((output, i) => <div key={i}>{output}</div>)}
+					</div>
+					<div className="teamContainer">
+						<PlayableTeam
+							team={rightTeam ? rightTeam : {}}
+							side="right"
+							onTeamChanged={teamName => this.props.setSelectedTeam('right', teamName)}
+							onRoll={this.doRoll.bind(this)}
+							showRollButtons={!!(leftTeam && rightTeam)}
+						/>
+					</div>
 				</div>
-				<div className="outputContainer">
-					{this.state.output.map((output, i) => <div key={i}>{output}</div>)}
-				</div>
-				<div className="teamContainer">
-					<PlayableTeam
-						team={rightTeam ? rightTeam : {}}
-						side="right"
-						onTeamChanged={teamName => this.props.setSelectedTeam('right', teamName)}
-						onRoll={this.doRoll.bind(this)}
-						showRollButtons={!!(leftTeam && rightTeam)}
-					/>
+				<div className="playGameContainer bottom-buttons">
+					<Link to={`/charts`}>Charts</Link>
 				</div>
 			</div>
 		);

@@ -1,7 +1,3 @@
-[ ] apply injury
-
-[ ] add a "check injuries" button - at end of each quarter, roll a d4 for each player that is injured and lower their injuries by that amount to see if they are aviallbe to play again
-
 [ ] add player
 [ ] delete player
 [ ] year end upgrades and drafting upgrade
@@ -24,6 +20,7 @@ up all ages by one year
 	offense: doubles and won then go 20 yards; triples = move number rolled
 	defense: triples = turn over
 	one player gets the bonus d4 dice for having picked run/pass right
+
 	roll injury dice - d20 and === 1? 1:20 chance seems like one per game
 		roll for which player got injured - if that player type is not playing then try again
 		Run play
@@ -56,8 +53,6 @@ up all ages by one year
 
 		K/P - 50
 		DL - 100
-	roll penalty dice - offense and defense : if both penalty then replay down
-		1:10 seems less likely of an occurrence
 
 
 

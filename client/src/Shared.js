@@ -129,6 +129,7 @@ const shared = {
 		// urlBase: 'http://localhost:8080/',
 	},
 	consts: {
+		// this should probably be a map instead of an array... that way it can be an enum
 		positions: ['QB', 'WR', 'RB', 'FB', 'OL', 'DL', 'LB', 'CB', 'S', 'P', 'K',],
 		positionTypes: {
 			offense: 'Offense',

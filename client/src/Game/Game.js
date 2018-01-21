@@ -1,6 +1,6 @@
 import React from "react";
 import Chance from "chance";
-import shared from "./Shared";
+import shared from "../Shared";
 
 const chance = new Chance();
 

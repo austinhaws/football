@@ -157,3 +157,11 @@ button.bad {
 .outputContainer {
 	width: 300px;
 }
+.chart-detail pre {
+	font-size: 8px;
+	line-height: 6px;
+}
+.chart-details {
+	display: flex;
+	flex-direction: column;
+}

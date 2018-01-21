@@ -10,6 +10,7 @@ import reducers from "./Reducers";
 import PlayGame from "./PlayGame/PlayGame";
 import TeamEdit from "./TeamEdit/TeamEdit";
 import PlayerEdit from "./PlayerEdit/PlayerEdit";
+import Charts from "./Charts/Charts";
 
 class AppClass extends React.Component {
 	constructor(props) {
@@ -25,12 +26,13 @@ class AppClass extends React.Component {
 				<div id="contentContainer">
 					<Switch>
 						<Route
-							path='/team/:teamName'
+							path="/team/:teamName"
 							render={props => <TeamEdit team={shared.funcs.getTeam(props.match.params.teamName)}/>}/>
 						<Route
-							path='/player/:playerUniqueId'
+							path="/player/:playerUniqueId"
 							render={props => <PlayerEdit routePlayerUniqueId={props.match.params.playerUniqueId}/>}
 							onEnter={props => store.dispatch({type: reducers.ACTION_TYPES.SET_EDITING_PLAYER_ID, payload: props.match.params.playerUniqueId})}/>
+						<Route path="/charts" component={Charts}/>
 						<Route render={() => <PlayGame {...this.props}/>}/>
 					</Switch>
 				</div>
