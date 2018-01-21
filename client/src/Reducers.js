@@ -93,6 +93,9 @@ reducers[reducers.ACTION_TYPES.TOGGLE_PLAYER_PLAYING] = (state, action) => {
 reducers[reducers.ACTION_TYPES.PLAYER_FIELD_CHANGED] = (state, action) => {
 	const result = clone(state);
 	result.editingPlayer[action.payload.field] = action.payload.value;
+	if (action.payload.field === 'injured' && action.payload.value !== 0) {
+		result.editingPlayer.playing = false;
+	}
 	return result;
 };
 
