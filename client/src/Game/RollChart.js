@@ -71,7 +71,7 @@ function rollChart(chart) {
 }
 
 export default {
-	injury: (positionType, playType) => rollChart(charts.injury[positionType][playType]),
+	injury: (positionType, playType) => rollChart(charts.injury.table[positionType][playType]),
 
 	// clone so outside world can't mess with inside world
 	charts: clone(charts),

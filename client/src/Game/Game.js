@@ -1,6 +1,7 @@
 import React from "react";
 import Chance from "chance";
 import shared from "../Shared";
+import charts from "../Game/RollChart";
 
 const chance = new Chance();
 
@@ -47,7 +48,7 @@ const rollTypes = {
 };
 
 export default {
-	rollTeamDown: (offBonus, offTeam, defBonus, defTeam, offenseGetsBonus) => {
+	rollTeamDown: (offBonus, offTeam, defBonus, defTeam, offenseGetsBonus, playType) => {
 		function showRolls(team, totals, rolls, bonus) {
 			return {cssClass: 'roll', text: `${team.name}: ${totals}  = ${rolls.rolls.join(' + ')}${rolls.bonus ? ' + ' + rolls.bonus : ''} + ${bonus}`};
 
@@ -94,10 +95,12 @@ export default {
 
 		// check injuries
 		if (offenseRolls.injury) {
-			output.push({cssClass: 'injury', text: `${offTeam.name} Injury!`});
+			const player = charts.injury(shared.consts.positionTypes.offense, playType);
+			output.push({cssClass: 'injury', text: `${offTeam.name} Injury! (${player})`});
 		}
 		if (defenseRolls.injury) {
-			output.push({cssClass: 'injury', text: `${defTeam.name} Injury!`});
+			const player = charts.injury(shared.consts.positionTypes.defense, playType);
+			output.push({cssClass: 'injury', text: `${defTeam.name} Injury! (${player})`});
 		}
 
 		return {output, offenseRolls, defenseRolls}

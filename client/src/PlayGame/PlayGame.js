@@ -28,7 +28,7 @@ class PlayGame extends React.Component {
 			.map((total, i) => total[i === 0 ? shared.consts.positionTypes.offense : shared.consts.positionTypes.defense][playType === shared.consts.playTypes.pass ? 'totalPass' : 'totalRun']);
 
 		// offense is first, so pass in team/bonuses
-		this.setState({output: game.rollTeamDown(bonuses[0], teams[0], bonuses[1], teams[1], shared.consts.positionTypes.offense === positionType).output});
+		this.setState({output: game.rollTeamDown(bonuses[0], teams[0], bonuses[1], teams[1], shared.consts.positionTypes.offense === positionType, playType).output});
 	}
 
 	render() {
