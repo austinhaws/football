@@ -51,7 +51,7 @@
 	font-weight: normal;
 }
 #react {
-	width: 777px;
+	width: 1500px;
 	margin: 0 auto;
 }
 .playGameContainer {
@@ -155,7 +155,7 @@ button.bad {
 	margin: 10px 0;
 }
 .outputContainer {
-	width: 300px;
+	width: 450px;
 }
 .chart-detail pre {
 	font-size: 8px;
@@ -164,4 +164,14 @@ button.bad {
 .chart-details {
 	display: flex;
 	flex-direction: column;
+}
+
+.outputContainer .big {
+	font-weight: bold;
+}
+.outputContainer .injury, .outputContainer .penalty {
+	color: red;
+}
+.outputContainer .injury {
+	font-weight: bold;
 }

@@ -48,6 +48,10 @@ const rollTypes = {
 
 export default {
 	rollTeamDown: (offBonus, offTeam, defBonus, defTeam, offenseGetsBonus) => {
+		function showRolls(team, totals, rolls, bonus) {
+			return {cssClass: 'roll', text: `${team.name}: ${totals}  = ${rolls.rolls.join(' + ')}${rolls.bonus ? ' + ' + rolls.bonus : ''} + ${bonus}`};
+
+		}
 		// roll basic rolls
 		const offenseRolls = rollTypes.downRoll(offenseGetsBonus);
 		const defenseRolls = rollTypes.downRoll(!offenseGetsBonus);
@@ -55,44 +59,45 @@ export default {
 		const output = [];
 		// check for penalties
 		if (offenseRolls.penalty && defenseRolls.penalty) {
-			output.push('Offsetting penalties');
+			output.push({cssClass: 'penalty', text: 'Offsetting penalties'});
 		} else if (offenseRolls.penalty) {
-			output.push('Offensive penalty');
+			output.push({cssClass: 'penalty', text: 'Offensive penalty'});
 		} else if (defenseRolls.penalty) {
-			output.push('Defensive penalty');
+			output.push({cssClass: 'penalty', text: 'Defensive penalty'});
 		}
 
 		const totals = {[shared.consts.positionTypes.offense]: offenseRolls.total + offBonus, [shared.consts.positionTypes.defense]: defenseRolls.total + defBonus};
 
 		// check who won the roll
 		if (defenseRolls.triples) {
-			output.push(`Turnover! ${defTeam.name} advances ${defenseRolls.rolls[0]}0 yards`);
+			output.push({cssClass: 'big', text: 'Turnover!'});
+			output.push({cssClass: 'result', text: `${defTeam.name} advances ${defenseRolls.rolls[0]}0 yards`});
 		} else {
 			if (totals[shared.consts.positionTypes.offense] >= totals[shared.consts.positionTypes.defense]) {
 				if (offenseRolls.triples) {
-					output.push(`Long Bomb! ${offTeam.name} advances ${offenseRolls.rolls[0]} yards`);
+					output.push({cssClass: 'big', text: 'Long Bomb!'});
+					output.push({cssClass: 'result', text: `${offTeam.name} advances ${offenseRolls.rolls[0]} yards`});
 				} else if (offenseRolls.doubles) {
-					output.push(`Big play. ${offTeam.name} advances 20 yards`);
+					output.push({cssClass: 'big', text: 'Big play'});
+					output.push({cssClass: 'result', text: `${offTeam.name} advances 20 yards`});
 				} else {
-					output.push(`${offTeam.name} Advances`);
+					output.push({cssClass: 'big', text: `${offTeam.name} advances 10 yards`});
 				}
 			} else {
-				output.push(`4th down. ${offTeam.name} stopped.`);
+				output.push({cssClass: 'big', text: '4th down'});
+				output.push({cssClass: 'result', text: `${offTeam.name} stopped.`});
 			}
 		}
 
-		output.push(`${offTeam.name}: ${totals[shared.consts.positionTypes.offense]}         ${defTeam.name}: ${totals[shared.consts.positionTypes.defense]}`);
-
-		//show rolls
-		output.push(`${offTeam.name}: ${offenseRolls.rolls.join(' + ')}${offenseRolls.bonus ? ' + ' + offenseRolls.bonus : ''} + ${offBonus}`);
-		output.push(`${defTeam.name}: ${defenseRolls.rolls.join(' + ')}${defenseRolls.bonus ? ' + ' + defenseRolls.bonus : ''} + ${defBonus}`);
+		output.push(showRolls(offTeam, totals[shared.consts.positionTypes.offense], offenseRolls, offBonus));
+		output.push(showRolls(defTeam, totals[shared.consts.positionTypes.defense], defenseRolls, defBonus));
 
 		// check injuries
 		if (offenseRolls.injury) {
-			output.push(`${offTeam.name} Injury!`);
+			output.push({cssClass: 'injury', text: `${offTeam.name} Injury!`});
 		}
 		if (defenseRolls.injury) {
-			output.push(`${defTeam.name} Injury!`);
+			output.push({cssClass: 'injury', text: `${defTeam.name} Injury!`});
 		}
 
 		return {output, offenseRolls, defenseRolls}

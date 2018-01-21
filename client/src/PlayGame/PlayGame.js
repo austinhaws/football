@@ -48,7 +48,7 @@ class PlayGame extends React.Component {
 						/>
 					</div>
 					<div className="outputContainer">
-						{this.state.output.map((output, i) => <div key={i}>{output}</div>)}
+						{this.state.output.map((output, i) => <div key={i} className={output.cssClass}>{output.text}</div>)}
 					</div>
 					<div className="teamContainer">
 						<PlayableTeam
