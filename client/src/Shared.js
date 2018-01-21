@@ -143,8 +143,8 @@ const shared = {
 		rolls: {
 			// sides of dice for these types of rolls
 			percentile: 100,
-			injury: 20,
-			penalty: 10,
+			injury: 40,
+			penalty: 30,
 			bonus: 4,
 			singleDown: 6,
 		}
