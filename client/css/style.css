@@ -158,8 +158,8 @@ button.bad {
 	width: 450px;
 }
 .chart-detail pre {
-	font-size: 8px;
-	line-height: 6px;
+	font-size: 10px;
+	line-height: 8px;
 }
 .chart-details {
 	display: flex;

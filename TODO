@@ -1,6 +1,6 @@
 [ ] add player
 [ ] delete player
-[ ] year end upgrades and drafting upgrade
+
 
 •end of year upgrading
 up all ages by one year
@@ -13,55 +13,11 @@ up all ages by one year
 2) roll on increase type chart: if result is less than 0, then player retires
 3) roll for change and apply to player (never below 0)
 
+
+
 [ ] add schedule/bracket page
 
-[ ] Rolling
-	each player rolls 3d6 and adds run/pass for offense/defense
-	offense: doubles and won then go 20 yards; triples = move number rolled
-	defense: triples = turn over
-	one player gets the bonus d4 dice for having picked run/pass right
 
-	roll injury dice - d20 and === 1? 1:20 chance seems like one per game
-		roll for which player got injured - if that player type is not playing then try again
-		Run play
-		QB - 10
-		WR - 15
-		RB - 65
-		OL - 90
-		FB - 100
-
-		DL - 35
-		LB - 70
-		CB - 90
-		S - 100
-
-		Pass
-		QB - 30
-		WR - 60
-		RB - 70
-		OL - 80
-		FB - 100
-
-		DL - 10
-		LB - 30
-		CB - 65
-		S - 100
-
-		special
-		K/P - 50
-		OL - 100
-
-		K/P - 50
-		DL - 100
-
-
-
-[ ] rules: on 2 pt conversion, defense always gets bonus dice
-[ ] kicker is the # of retries?
-[ ] punter is the +/- max possible: pick before rolling
-
-
-make cards have run/pass on their back and run/back underneath. that way can be tricky and look like running, but actually passing.
 
 
 [ ] drafting
@@ -92,7 +48,3 @@ did 2 guys per position for a 4 team draft
 salary cap
 - a player costs $1 for each score they have
 - only have so many dollars each year?
-
-[ ] add player
-[ ] delete player
-[ ] move player

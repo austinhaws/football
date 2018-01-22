@@ -1,0 +1,17 @@
+These are the rules to the game
+
+* on 2 pt conversion, defense always gets bonus dice
+* kicker's level is the # of retries per kick
+* punter's level is the +/- max possible: pick before rolling
+* roll d12 to determine injury level on injury
+* after each played quarter, roll d4 and subtract that amount for an injured player (roll each injured player separately)
+
+
+Each round:
+* each player rolls 3d6 and adds run/pass for offense/defense
+* offense: doubles and won then go 20 yards; triples = move number rolled
+* defense: triples = turn over
+* one player gets the bonus d4 dice for having picked run/pass right
+	* if defense matches offense then defense gets it
+	* if defense does not match offense then offense gets it
+

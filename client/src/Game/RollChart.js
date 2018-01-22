@@ -10,6 +10,19 @@ const chance = new Chance();
 // charts must supply an array of max/result values in ascending order
 const charts = {};
 
+charts.upgradeLevel = {
+	table: [
+		{max: 5, result: {level: 1, roll: 4, numberStats: 2,}},
+		{max: 10, result: {level: 2, roll: 4, numberStats: 1,}},
+		{max: 25, result: {level: 3, roll: 3, numberStats: 2,}},
+		{max: 40, result: {level: 4, roll: 3, numberStats: 1,}},
+		{max: 70, result: {level: 5, roll: 2, numberStats: 2,}},
+		{max: 100, result: {level: 6, roll: 2, numberStats: 1,}},
+	],
+	fields: [],
+	description: 'Determine upgrade level for a player. Useful when drafting or rolling upgrades.',
+};
+
 // an injury has occurred
 // params: offense/defense, run/pass
 charts.injury = {

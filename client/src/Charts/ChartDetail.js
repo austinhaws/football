@@ -24,7 +24,8 @@ class ChartDetail extends React.Component {
 		const table = chart.fields.reduce((table, field) => table[this.state.parameterValues[field.var]], chart.table);
 
 		// roll the table
-		this.setState(Object.assign(clone(this.state), {rollOutput: charts.rollChart(table)}));
+		const rollResult = charts.rollChart(table);
+		this.setState(Object.assign(clone(this.state), {rollOutput: rollResult instanceof Object ? JSON.stringify(rollResult) : rollResult}));
 	}
 
 	changeParameter(fieldVar, value) {
