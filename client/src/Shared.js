@@ -139,6 +139,7 @@ const shared = {
 		playTypes: {
 			run: 'run',
 			pass: 'pass',
+			special: 'special',
 		},
 		rolls: {
 			// sides of dice for these types of rolls

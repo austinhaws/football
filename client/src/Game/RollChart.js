@@ -10,6 +10,57 @@ const chance = new Chance();
 // charts must supply an array of max/result values in ascending order
 const charts = {};
 
+charts.upgradePlayType = {
+	table: {
+		'QB': [
+			{max: 50, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'WR': [
+			{max: 25, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'RB': [
+			{max: 75, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'OL': [
+			{max: 50, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'FB': [
+			{max: 75, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'DL': [
+			{max: 50, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'LB': [
+			{max: 50, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'CB': [
+			{max: 25, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'S': [
+			{max: 15, result: shared.consts.playTypes.run},
+			{max: 100, result: shared.consts.playTypes.pass},
+		],
+		'K': [
+			{max: 1, result: shared.consts.playTypes.special},
+		],
+		'P': [
+			{max: 1, result: shared.consts.playTypes.special},
+		],
+	},
+	fields: [
+		{var: 'position', options: shared.consts.positions}
+	],
+	description: 'Should an upgrade to a stat be applied to run or to pass?',
+};
+
 charts.upgradeLevel = {
 	table: [
 		{max: 5, result: {level: 1, roll: 4, numberStats: 2,}},

@@ -1,6 +1,8 @@
 [ ] add player
 [ ] delete player
 
+[ ] make constant for each position type (use in positions array, use everywhere string types are used)
+
 
 •end of year upgrading
 up all ages by one year
@@ -17,27 +19,6 @@ up all ages by one year
 
 [ ] add schedule/bracket page
 
-
-
-
-[ ] drafting
-	each player gets a "draft level" telling what types of rolls they will get when made
-	level 1 : <= 5% : d4 on both
-	level 2 : <= 10% : d4 on one
-	level 3 : <= 25% : d3 on both
-	level 4 : <= 40% : d3 on one
-	level 5 : <= 70% : d2 on both
-	level 6 : <= 100% : d2 on one
-	* chance of run/pass by position
-	QB: 50/50
-	WR: 25/75
-	RB: 75/25
-	OL: 50/50
-	FB: 75/25
-	DL: 50/50
-	LB: 50/50
-	CB: 25/75
-	S: 15/85
 
 did 2 guys per position for a 4 team draft
 [ ] starting teams:

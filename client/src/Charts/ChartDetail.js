@@ -39,9 +39,6 @@ class ChartDetail extends React.Component {
 		return (
 			<div className="chart-detail">
 				{this.props.chartName}
-				<div key="chart" className="chart-details">
-					<pre>{JSON.stringify(chart.table, undefined, 2)}</pre>
-				</div>
 				<div key="parameters" className="parameters">
 					{
 						chart.fields.map(field =>
@@ -70,7 +67,9 @@ class ChartDetail extends React.Component {
 						{this.state.rollOutput ? `Roll Result: ${this.state.rollOutput}` : undefined}
 					</div>
 				</div>
-
+				<div key="chart" className="chart-details">
+					<pre>{JSON.stringify(chart.table, undefined, 2)}</pre>
+				</div>
 			</div>
 		);
 	}
