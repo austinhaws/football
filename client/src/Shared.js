@@ -61,13 +61,13 @@ const shared = {
 		positionSortOrder: position => shared.consts.positions.indexOf(position),
 		positionType: position => {
 			return {
-				'QB': shared.consts.positionTypes.offense, 'WR': shared.consts.positionTypes.offense,
-				'RB': shared.consts.positionTypes.offense, 'FB': shared.consts.positionTypes.offense, 'OL': shared.consts.positionTypes.offense,
+				[shared.consts.position.QB]: shared.consts.positionTypes.offense, [shared.consts.position.WR]: shared.consts.positionTypes.offense,
+				[shared.consts.position.RB]: shared.consts.positionTypes.offense, [shared.consts.position.FB]: shared.consts.positionTypes.offense, [shared.consts.position.OL]: shared.consts.positionTypes.offense,
 
-				'DL': shared.consts.positionTypes.defense, 'LB': shared.consts.positionTypes.defense,
-				'CB': shared.consts.positionTypes.defense, 'S': shared.consts.positionTypes.defense,
+				'DL': shared.consts.positionTypes.defense, [shared.consts.position.LB]: shared.consts.positionTypes.defense,
+				[shared.consts.position.CB]: shared.consts.positionTypes.defense, [shared.consts.position.S]: shared.consts.positionTypes.defense,
 
-				'P': shared.consts.positionTypes.special, 'K': shared.consts.positionTypes.special,
+				[shared.consts.position.P]: shared.consts.positionTypes.special, [shared.consts.position.K]: shared.consts.positionTypes.special,
 			}[position];
 		},
 		positionsByType: () =>
@@ -104,8 +104,8 @@ const shared = {
 				groupsTotals[groupType].totalRun = playersForGroupTypePlaying.reduce((total, player) => total + player.run, 0);
 				groupsTotals[groupType].totalPass = playersForGroupTypePlaying.reduce((total, player) => total + player.pass, 0);
 				groupsTotals[groupType].totalSpecial = playersForGroupTypePlaying.reduce((total, player) => total + player.special, 0);
-				groupsTotals[groupType].totalKick = playersForGroupTypePlaying.reduce((total, player) => total + (player.position === 'K' ? player.special : 0), 0);
-				groupsTotals[groupType].totalPunt = playersForGroupTypePlaying.reduce((total, player) => total + (player.position === 'P' ? player.special : 0), 0);
+				groupsTotals[groupType].totalKick = playersForGroupTypePlaying.reduce((total, player) => total + (player.position === shared.consts.position.K ? player.special : 0), 0);
+				groupsTotals[groupType].totalPunt = playersForGroupTypePlaying.reduce((total, player) => total + (player.position === shared.consts.position.P ? player.special : 0), 0);
 
 				return groupsTotals;
 			}, Object.keys(shared.consts.positionTypes).reduce((groups, type) => {
@@ -130,7 +130,19 @@ const shared = {
 	},
 	consts: {
 		// this should probably be a map instead of an array... that way it can be an enum
-		positions: ['QB', 'WR', 'RB', 'FB', 'OL', 'DL', 'LB', 'CB', 'S', 'P', 'K',],
+		position: {
+			QB: 'QB',
+			WR: 'WR',
+			RB: 'RB',
+			FB: 'FB',
+			OL: 'OL',
+			DL: 'DL',
+			LB: 'LB',
+			CB: 'CB',
+			S: 'S',
+			P: 'P',
+			K: 'K',
+		},
 		positionTypes: {
 			offense: 'Offense',
 			defense: 'Defense',
@@ -151,5 +163,19 @@ const shared = {
 		}
 	},
 };
+
+shared.consts.positions = [
+	shared.consts.position.QB,
+	shared.consts.position.WR,
+	shared.consts.position.RB,
+	shared.consts.position.FB,
+	shared.consts.position.OL,
+	shared.consts.position.DL,
+	shared.consts.position.LB,
+	shared.consts.position.CB,
+	shared.consts.position.S,
+	shared.consts.position.P,
+	shared.consts.position.K,
+];
 
 export default shared;

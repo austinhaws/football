@@ -12,46 +12,46 @@ const charts = {};
 
 charts.upgradePlayType = {
 	table: {
-		'QB': [
+		[shared.consts.position.QB]: [
 			{max: 50, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'WR': [
+		[shared.consts.position.WR]: [
 			{max: 25, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'RB': [
+		[shared.consts.position.WR]: [
 			{max: 75, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'OL': [
+		[shared.consts.position.OL]: [
 			{max: 50, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'FB': [
+		[shared.consts.position.FB]: [
 			{max: 75, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'DL': [
+		[shared.consts.position.DL]: [
 			{max: 50, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'LB': [
+		[shared.consts.position.LB]: [
 			{max: 50, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'CB': [
+		[shared.consts.position.CB]: [
 			{max: 25, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'S': [
+		[shared.consts.position.S]: [
 			{max: 15, result: shared.consts.playTypes.run},
 			{max: 100, result: shared.consts.playTypes.pass},
 		],
-		'K': [
+		[shared.consts.position.K]: [
 			{max: 1, result: shared.consts.playTypes.special},
 		],
-		'P': [
+		[shared.consts.position.P]: [
 			{max: 1, result: shared.consts.playTypes.special},
 		],
 	},
@@ -80,32 +80,32 @@ charts.injury = {
 	table: {
 		[shared.consts.positionTypes.offense]: {
 			[shared.consts.playTypes.pass]: [
-				{max: 30, result: 'QB'},
-				{max: 60, result: 'WR'},
-				{max: 70, result: 'RB'},
-				{max: 80, result: 'OL'},
-				{max: 100, result: 'FB'},
+				{max: 30, result: shared.consts.position.QB},
+				{max: 60, result: shared.consts.position.WR},
+				{max: 70, result: shared.consts.position.RB},
+				{max: 80, result: shared.consts.position.OL},
+				{max: 100, result: shared.consts.position.FB},
 			],
 			[shared.consts.playTypes.run]: [
-				{max: 10, result: 'QB'},
-				{max: 15, result: 'WR'},
-				{max: 65, result: 'RB'},
-				{max: 85, result: 'OL'},
-				{max: 100, result: 'FB'},
+				{max: 10, result: shared.consts.position.QB},
+				{max: 15, result: shared.consts.position.WR},
+				{max: 65, result: shared.consts.position.RB},
+				{max: 85, result: shared.consts.position.OL},
+				{max: 100, result: shared.consts.position.FB},
 			],
 		},
 		[shared.consts.positionTypes.defense]: {
 			[shared.consts.playTypes.pass]: [
-				{max: 10, result: 'DL'},
-				{max: 30, result: 'LB'},
-				{max: 65, result: 'CB'},
-				{max: 100, result: 'S'},
+				{max: 10, result: shared.consts.position.DL},
+				{max: 30, result: shared.consts.position.LB},
+				{max: 65, result: shared.consts.position.CB},
+				{max: 100, result: shared.consts.position.S},
 			],
 			[shared.consts.playTypes.run]: [
-				{max: 35, result: 'DL'},
-				{max: 70, result: 'LB'},
-				{max: 90, result: 'CB'},
-				{max: 100, result: 'S'},
+				{max: 35, result: shared.consts.position.DL},
+				{max: 70, result: shared.consts.position.LB},
+				{max: 90, result: shared.consts.position.CB},
+				{max: 100, result: shared.consts.position.S},
 			],
 		},
 		// special is weird because it doesn't matter run/pass, but if the roll is for offense/defense

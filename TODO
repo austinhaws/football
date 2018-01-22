@@ -1,9 +1,6 @@
 [ ] add player
 [ ] delete player
 
-[ ] make constant for each position type (use in positions array, use everywhere string types are used)
-
-
 •end of year upgrading
 up all ages by one year
 
