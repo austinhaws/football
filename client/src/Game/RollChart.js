@@ -10,6 +10,29 @@ const chance = new Chance();
 // charts must supply an array of max/result values in ascending order
 const charts = {};
 
+
+// how long, on average, is a player's career
+charts.averageCareer = {
+	table: {
+		[shared.consts.position.QB]: [{max: 1, result: 5}],
+		[shared.consts.position.WR]: [{max: 1, result: 3}],
+		[shared.consts.position.RB]: [{max: 1, result: 2}],
+		[shared.consts.position.FB]: [{max: 1, result: 3}],
+		[shared.consts.position.OL]: [{max: 1, result: 4}],
+		[shared.consts.position.DL]: [{max: 1, result: 3}],
+		[shared.consts.position.LB]: [{max: 1, result: 3}],
+		[shared.consts.position.CB]: [{max: 1, result: 3}],
+		[shared.consts.position.S]: [{max: 1, result: 3}],
+		[shared.consts.position.P]: [{max: 1, result: 6}],
+		[shared.consts.position.K]: [{max: 1, result: 6}],
+	},
+	fields: [
+		{var: 'position', options: shared.consts.positions}
+	],
+	description: 'How long is a player type career on average. The results are not random.',
+};
+
+// Should a player upgrade be applied to run or pass?
 charts.upgradePlayType = {
 	table: {
 		[shared.consts.position.QB]: [
@@ -61,6 +84,7 @@ charts.upgradePlayType = {
 	description: 'Should an upgrade to a stat be applied to run or to pass?',
 };
 
+// how strong of an upgrade does the player get?
 charts.upgradeLevel = {
 	table: [
 		{max: 5, result: {level: 1, roll: 4, numberStats: 2,}},

@@ -10,8 +10,22 @@ up all ages by one year
 	+10 each year over
 	-10 each year under
 2) roll on increase type chart: if result is less than 0, then player retires
-3) roll for change and apply to player (never below 0)
+3) roll for change and apply to player (resulting score is never below 0)
 
+Average career length
+- K/P: 6
+- QB: 5
+- CB: 3
+- FB: 3
+- DL: 3
+- LB: 3
+- OL: 4
+- WR: 3
+- RB: 2
+- S: 3
+Add (4 - draft level) to average length of career showing that better players tend to last longer (ie. draft level 1 prospect gets 3 extra years on average of productivity (remember that this is average, and they will last longer, so 3 extra years does make a difference)
+https://www.statista.com/statistics/240102/average-player-career-length-in-the-national-football-league/
+https://www.reddit.com/r/nfl/comments/6atatc/average_length_of_an_nfl_career_by_position/
 
 
 [ ] add schedule/bracket page
